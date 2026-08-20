@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 import styles from "../../screens/Desktop/Desktop.module.css";
 
-import chromeLogo from "../../assets/logos/yemDev_chrome_ph-2.png";
+import chromeLogo from "../../assets/logos/yemdev_chrome_ph-2.png";
 import batteryIcon from "../../assets/menu-icons/battery_icon.png";
 import wifiIcon from "../../assets/menu-icons/wifi_icon.png";
 import searchIcon from "../../assets/menu-icons/search_icon.png";
