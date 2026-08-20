@@ -1,8 +1,12 @@
-yemOS
+# yemOS
 
-yemOS is an interactive portfolio built as a fictional desktop operating system. Rather than presenting projects and professional information through a traditional portfolio layout, yemOS turns the portfolio itself into an explorable interface with applications, windows, menus, a file system, system dislogs, and responsive desktop enviroments.
+**Live Demo:** https://yem-os.vercel.app/
+
+yemOS is an interactive portfolio built as a fictional desktop operating system. Rather than presenting projects and professional information through a traditional portfolio layout, yemOS turns the portfolio itself into an explorable interface with applications, windows, menus, a file system, system dialogs, and responsive desktop environments.
 
 Built with React and Vite, the project combines front-end development, UI architecture, responsive design, accessibility, and a custom visual system built primarily with CSS.
+
+![yemOS desktop interface] (docs/images/yemos-desktop.png)
 
 Features
 ∙ Interactive boot, login, desktop, sleep, and shutdown experiences
@@ -20,16 +24,18 @@ Features
 ∙ Reduced-motion support
 ∙ Custom sound and media interactions
 
+![yemOS Project Viewer] (docs/images/yemos-projects.png)
+
 Architecture
 
 As yemOS grew, shared behavior was moved into reusable systems rather than being managed independently by individual components.
 
 Major systems include:
 
-    ∙ Window Manager - manages application windows, focus, positioning, resizing, minimizingm restoring, and closing.
-    ∙ Menu Manager - coordinates system and contexual menus.
+    ∙ Window Manager - manages application windows, focus, positioning, resizing, minimizing restoring, and closing.
+    ∙ Menu Manager - coordinates system and contextual menus.
     ∙ Dialog Manager - provides shared system dialog behavior.
-    ∙ Sound Manager - centeralizes interface sound behavior.
+    ∙ Sound Manager - centralizes interface sound behavior.
     ∙ File System - provides a shared source of truth for files, applications, and Trash state.
     ∙ Layout Context - coordinates responsive layout behavior across the interface.
     ∙ App Registry - centralizes application configuration and metadata.
@@ -66,14 +72,16 @@ Layouts and interactions adapt for:
 
 Some interface behavior changes intentionally at smaller breakpoints rather than simply shrinking the desktop UI.
 
+![yemOS mobile interface] (docs/images/yemos-mobile.png)
+
 Tech Stack
 
     ∙ React
-    ∙ Javascript
+    ∙ JavaScript
     ∙ Vite
-    ∙ CSS Module
+    ∙ CSS Modules
     ∙ CSS
-    ∙ React Module
+    ∙ React Context
     ∙ Custom React Hooks
     ∙ ESLint
     ∙ Git/GitHub
@@ -82,7 +90,9 @@ Applications
 
     Directory:
 
-    The priimary file-browser interface for navigation content within yemOS.
+    The primary file-browser interface for navigation content within yemOS.
+
+    ![yemOS directory Application] (docs/images/yemos-directory.png)
 
     Project Viewer:
 
@@ -94,7 +104,7 @@ Applications
 
     Contact:
 
-    Provides professional contact and social links through an interface designed to fite the yemOS enviroment.
+    Provides professional contact and social links through an interface designed to fit the yemOS environment.
 
     Search:
 
@@ -108,9 +118,9 @@ Design
 
 yemOS uses a custom visual system built primarily with CSS, allowing the interface's themes, textures, surfaces, and interactive states to be rendered directly in the browser rather than relying heavily on pre-rendered graphics.
 
-Different parts of the operating system have their own visual themes while remaining part of the same overall interface. These themes are created through reusable CSS techniques including layered linear and radial gradients, prodecural grain textures, transparency, blend modes, shadows, highlights, backdrop effects, and carefully defined color palettes.
+Different parts of the operating system have their own visual themes while remaining part of the same overall interface. These themes are created through reusable CSS techniques including layered linear and radial gradients, procedural grain textures, transparency, blend modes, shadows, highlights, backdrop effects, and carefully defined color palettes.
 
-Image and media assets are still used where they make sens, such as application icons, artwork, and project previews.
+Image and media assets are still used where they make sense, such as application icons, artwork, and project previews.
 
 Development
 
@@ -130,11 +140,11 @@ Development
 
         npm run build
 
-Production
+## Production
 
-The project is built for production with Vite.
+The project is built for production with Vite and deployed with Vercel.
 
-A live deployment link will be added here after deplotment.
+**Live Demo:** https://yem-os.vercel.app/
 
 Author
 
