@@ -546,3 +546,22 @@
             translateY(22px);
     }
 }
+
+@media (max-width: 700px) {
+    .titleBar {
+        padding: 0 8px;
+    }
+
+    .windowControls {
+        gap: 6px;
+    }
+
+    .rightControls {
+        gap: 6px;
+    }
+
+    .title {
+        font-size: 11px;
+        letter-spacing: 0.03em;
+    }
+}

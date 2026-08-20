@@ -131,8 +131,8 @@ const DesktopMenuBar = ({
               </button>
           </div>
 
-          <span className={styles.menuLabel}>{formattedDate}</span>
-          <span className={styles.menuLabel}>{formattedTime}</span>
+          <span className={`${styles.menuLabel} ${styles.dateTimeText}`}>{formattedDate}</span>
+          <span className={`${styles.menuLabel} ${styles.dateTimeText}`}>{formattedTime}</span>
 
         </div>
 
