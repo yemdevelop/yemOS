@@ -240,7 +240,7 @@ const LoginScreen = ({ goToDesktop, onPowerAction, isTransitioning }) => {
             aria-live="polite"
           >
             {typingComplete
-              ? "Login ready. Press Enter or select Log in."
+              ? "Login ready. Select the arrow to continue."
               : "Preparing login..."
             }
           </p>
