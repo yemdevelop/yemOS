@@ -1,0 +1,574 @@
+.environment {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    background: 
+        radial-gradient(
+            circle at 50% 45%,
+            #0d8090 0%,
+            #07566e 24%,
+            #18365f 50%,
+            #211946 74%,
+            #080c20 100%
+        );
+    
+    pointer-events: none;
+    isolation: isolate;
+}
+
+.atmosphere {
+    position: absolute;
+    inset: -12%;
+
+    background: 
+        radial-gradient(
+            ellipse at 48% 32%,
+            rgba(80, 244, 255, 0.28),
+            transparent 34%
+        ),
+        
+        radial-gradient(
+            ellipse at 18% 72%,
+            rgba(50, 213, 178, 0.24),
+            transparent 38%
+        ),
+        
+        radial-gradient(
+            ellipse at 78% 70%,
+            rgba(138, 81, 214, 0.3),
+            transparent 44%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(18, 170, 180, 0.28),
+            transparent 32%,
+            rgba(84, 50, 156, 0.28) 68%,
+            rgba(10, 15, 43, 0.48)
+        );
+    
+    filter: blur(18px);
+
+    animation: 
+        atmosphereDrift 28s ease-in-out infinite alternate;
+}
+
+.energyBloom {
+    position: absolute;
+    inset: 0;
+
+    mix-blend-mode: screen;
+}
+
+.cyanBloom,
+.violetBloom,
+.orangeBloom,
+.greenBloom {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(42px);
+
+    opacity: 0.66;
+}
+
+.cyanBloom {
+    width: 36vw;
+    height: 36vw;
+
+    min-width: 260px;
+    min-height: 260px;
+
+    top: -14%;
+    left: 22%;
+
+    background: 
+        radial-gradient(
+            circle,
+            rgba(91, 239, 255, 0.62),
+            rgba(23, 153, 190, 0.2) 48%,
+            transparent 72%
+        );
+
+    animation: 
+        bloomFloatOne 18s ease-in-out infinite alternate;
+}
+
+.violetBloom {
+    width: 42vw;
+    height: 42vw;
+
+    min-width: 320px;
+    min-height: 320px;
+
+    right: -16%;
+    bottom: -24%;
+
+    background: 
+        radial-gradient(
+            circle,
+            rgba(171, 79, 226, 0.5),
+            rgba(74, 37, 145, 0.2) 48%,
+            transparent 74%
+        );
+
+    animation: 
+        bloomFloatTwo 23s ease-in-out infinite alternate;
+}
+
+.orangeBloom {
+    width: 24vw;
+    height: 24vw;
+
+    min-width: 180px;
+    min-height: 180px;
+
+    right: 8%;
+    top: 18%;
+
+    background: 
+        radial-gradient(
+            circle,
+            rgba(255, 145, 48, 0.42),
+            rgba(255, 92, 33, 0.12) 46%,
+            transparent 72%
+        );
+    
+    animation: 
+        bloomPulse 12s ease-in-out infinite;
+}
+
+.greenBloom {
+    width: 28vw;
+    height: 28vw;
+
+    min-width: 220px;
+    min-height: 220px;
+
+    left: -10%;
+    bottom: -12%;
+
+    background: 
+        radial-gradient(
+            circle,
+            rgba(77, 255, 177, 0.38),
+            rgba(14, 139, 105, 0.12) 50%,
+            transparent 74%
+        );
+
+    animation:
+        bloomFloatTwo 20s ease-in-out infinite alternate-reverse;
+}
+
+.processor {
+    position: absolute;
+
+    width: min(72vw, 920px);
+    aspect-ratio: 1;
+
+    left: 50%;
+    top: 54%;
+
+    transform:  
+        translate(-50%, -50%)
+        perspective(900px)
+        rotateX(62deg)
+        rotateZ(-12deg);
+
+    opacity: 0.56;
+
+    filter: 
+        drop-shadow(0 0 22px rgba(81, 232, 255, 0.28));
+}
+
+.outerRing,
+.middleRing,
+.innerRing,
+.energyCore {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.outerRing {
+    width: 100%;
+    height: 100%;
+
+    background: 
+        conic-gradient(
+            from 20deg,
+            transparent 0deg 24deg,
+            rgba(95, 242, 255, 0.42) 24deg 27deg,
+            transparent 27deg 76deg,
+            rgba(149, 89, 230, 0.38) 76deg 79deg,
+            transparent 79deg 132deg,
+            rgba(255, 148, 49, 0.34) 132deg 135deg,
+            transparent 135deg 214deg,
+            rgba(67, 238, 170, 0.34) 214deg 217deg,
+            transparent 217deg 360deg
+        );
+
+    -webkit-mask: 
+        radial-gradient(
+            circle,
+            transparent 0 75%,
+            #000 75.5% 79%,
+            transparent 79.5%
+        );
+
+    mask: 
+        radial-gradient(
+            circle,
+            transparent 0 75%,
+            #000 75.5% 79%,
+            transparent 79.5%
+        );
+
+    animation: 
+        ringRotate 48s linear infinite;
+}
+
+.middleRing {
+    width: 72%;
+    height: 72%;
+
+    border: 
+        2px solid rgba(99, 232, 255, 0.24);
+
+    box-shadow: 
+        0 0 18px rgba(51, 225, 255, 0.22),
+        inset 0 0 18px rgba(128, 93, 222, 0.18);
+
+    background: 
+        repeating-conic-gradient(
+            from 45deg,
+            rgba(84, 230, 255, 0.22) 0deg 2deg,
+            transparent 2deg 15deg
+        );
+
+    -webkit-mask: 
+        radial-gradient(
+            circle,
+            transparent 0 67%,
+            #000 68% 73%,
+            transparent 74%
+        );
+
+    mask: 
+        radial-gradient(
+            circle,
+            transparent 0 67%,
+            #000 68% 73%,
+            transparent 74%
+        );
+
+    animation: 
+        ringRotateReverse 36s linear infinite;
+}
+
+.innerRing {
+    width: 44%;
+    height: 44%;
+
+    border: 
+        1px solid rgba(204, 251, 255, 0.42);
+
+    box-shadow: 
+        0 0 24px rgba(72, 238, 255, 0.26),
+        inset 0 0 20px rgba(54, 131, 202, 0.26);
+
+    background: 
+        repeating-conic-gradient(
+            rgba(105, 235, 255, 0.3) 0deg 1deg,
+            transparent 1deg 10deg
+        );
+
+    -webkit-mask:
+            radial-gradient(
+            circle,
+            transparent 0 60%,
+            #000 61% 66%,
+            transparent 67%
+        );
+
+    mask:
+        radial-gradient(
+            circle,
+            transparent 0 60%,
+            #000 61% 66%,
+            transparent 67%
+        );
+
+    animation: 
+        ringRotate 24s linear infinite;
+}
+
+.energyCore {
+    width: 18%;
+    height: 18%;
+
+    background: 
+        radial-gradient(
+            circle at 40% 35%,
+            #fff 0%,
+            #a8f8ff 10%,
+            #46e5ff 28%,
+            rgba(36, 145, 210, 0.5) 56%,
+            transparent 74%
+        );
+
+    box-shadow: 
+        0 0 24px rgba(106, 244, 255, 0.82),
+        0 0 68px rgba(65, 206, 255, 0.52),
+        0 0 120px rgba(117, 80, 214, 0.34);
+
+    animation:
+        corePulse 4.5s ease-in-out infinite;
+}
+
+.circuitField {
+    position: absolute;
+    inset: 0;
+
+    background: 
+        linear-gradient(
+            90deg, 
+            transparent 49.7%,
+            rgba(117, 232, 255, 0.13) 50%,
+            transparent 50.3%
+        ),
+        
+        linear-gradient(
+            0deg,
+            transparent 49.7%,
+            rgba(117, 232, 255, 0.1) 50%,
+            transparent 50.3%
+        ),
+        
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 68px,
+            rgba(119, 225, 255, 0.055) 69px,
+            transparent 70px 138px
+        ),
+        
+        repeating-linear-gradient(
+            0deg,
+            transparent 0 68px,
+            rgba(119, 225, 255, 0.04) 69px,
+            transparent 70px 138px
+        );
+
+        opacity: 0.7;
+
+        -webkit-mask:
+            radial-gradient(
+                ellipse at center,
+                #000 0%,
+                rgba(0, 0, 0, 0.72) 44%,
+                transparent 82%
+            );
+
+        mask:
+            radial-gradient(
+                ellipse at center,
+                #000 0%,
+                rgba(0, 0, 0, 0.72) 44%,
+                transparent 82%
+            );
+}
+
+.energySweep {
+    position: absolute;
+
+    width: 42%;
+    height: 160%;
+
+    left: -52%;
+    top: -30%;
+
+    transform: 
+        rotate(18deg);
+
+    background: 
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(108, 241, 255, 0.06) 26%,
+            rgba(255, 255, 255, 0.2) 48%,
+            rgba(190, 106, 255, 0.1) 64%,
+            transparent
+        );
+
+    filter: blur(10px);
+
+    mix-blend-mode: screen;
+
+    animation: 
+        energySweep 22s linear infinite;
+}
+
+.grain {
+    position: absolute;
+    inset: 0;
+
+    background: 
+        var(--grain-texture);
+
+    background-size:
+        92px 92px;
+
+    mix-blend-mode: soft-light;
+
+    opacity: 0.12;
+}
+
+@keyframes atmosphereDrift {
+    from{
+        transform: 
+            translate3d(-1.5%, -1%, 0)
+            scale(1.02);
+    }
+
+    to {
+        transform:
+            translate3d(2%, 1.5%, 0)
+            scale(1.08);
+    }
+}
+
+@keyframes bloomFloatOne {
+    from{
+        transform:
+            translate3d(-3%, -2%, 0)
+            scale(0.96);
+    }
+
+    to {
+        transform: 
+            translate3d(5%, 4%, 0)
+            scale(1.08);
+    }
+}
+
+@keyframes bloomFloatTwo {
+    from{
+        transform: 
+            translate3d(3%, -3%, 0)
+            scale(0.94);
+    }
+
+    to {
+        transform: 
+            translate3d(-5%, 4%, 0)
+            scale(1.1);
+    }
+}
+
+@keyframes bloomPulse {
+    0%,
+    100% {
+        opacity: 0.42;
+        transform: scale(0.94);
+    }
+
+    50% {
+        opacity: 0.72;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes ringRotate {
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    to {
+        transform: 
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+@keyframes ringRotateReverse {
+    from {
+        transform: 
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+
+    to {
+        transform: 
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+}
+
+@keyframes corePulse {
+    0%,
+    100% {
+        opacity: 0.72;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.88);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%)
+        scale(1.12);
+    }
+}
+
+@keyframes energySweep {
+    from {
+        left: -52%;
+    }
+
+    to {
+        left: 118%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .atmosphere,
+    .cyanBloom,
+    .violetBloom,
+    .orangeBloom,
+    .greenBloom,
+    .outerRing,
+    .middleRing,
+    .innerRing,
+    .energyCore,
+    .energySweep {
+        animation: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .processor {
+        width: 118vw;
+        top: 58%;
+
+        opacity: 0.42;
+    }
+
+    .orangeBloom {
+        right: -10%;
+        top: 24%;
+    }
+
+    .circuitField {
+        opacity: 0.48;
+    }
+}

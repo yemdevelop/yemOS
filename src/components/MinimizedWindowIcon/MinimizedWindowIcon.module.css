@@ -1,0 +1,39 @@
+.slot {
+    width: 52px;
+    height: 52px;
+
+    padding: 4px;
+
+    border: none;
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+.slot:focus-visible {
+    outline: 1px solid rgba(142, 246, 255, 0.9);
+    outline-offset: 1px;
+}
+
+.previewViewport {
+    width: 44px;
+    height: 34px;
+
+    overflow: hidden;
+}
+
+.previewScale {
+    width: 550px;
+    height: 425px;
+
+    transform: scale(0.08);
+    transform-origin: top left;
+    
+    pointer-events: none;
+}

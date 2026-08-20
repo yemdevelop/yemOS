@@ -1,0 +1,126 @@
+.bootScreen {
+    --boot-scale: clamp(140px, 12vw, 260px);
+    --boot-gap: calc(var(--boot-scale) * 0.45);
+    --boot-offset: -45%;
+    
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    
+    width: 100vw;
+    height: 100dvh;
+
+    background: black;
+    overflow: hidden;
+}
+
+.bootContent {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, var(--boot-offset));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--boot-gap);
+}
+
+.logoSlot {
+    width: var(--boot-scale);
+    height: var(--boot-scale);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.loadingContainer {
+    width: calc(var(--boot-scale) * 1.15);
+    height: 8px;
+
+    opacity: 0;
+
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    background: rgba(255, 255, 255, 0.05);  
+
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.4),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.4);
+
+    overflow: hidden;
+}
+
+.showLoading {
+    opacity: 1;
+}
+
+.loadingBar {
+    width: 0%;
+    height: 100%;
+
+    animation: fillBar 3s linear forwards;
+
+    background: linear-gradient(
+        to bottom,
+        #555,
+        #cfcfcf,
+        #fff,
+        #cfcfcf,
+        #555
+    );
+}
+.bootScreen[data-layout="phone"] {
+    --boot-scale: clamp(110px, 30vw, 150px);
+    --boot-gap: calc(var(--boot-scale) * 0.42);
+    --boot-offset: -46%;
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .bootScreen {
+        --boot-scale: clamp(80px, 22vh,  120px);
+        --boot-gap: calc(var(--boot-scale) * 0.28);
+        --boot-offset: -50%;
+    }
+}
+
+@keyframes fillBar {
+    0% {
+        width: 0%;
+    }
+    20% {
+        width: 0%;
+    }
+    25% {
+        width: 22%;
+    }
+    30% {
+        width: 22%;
+    }
+    45% {
+        width: 48%;
+    }
+    60% {
+        width: 48%;
+    }
+    90% {
+        width: 73%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+

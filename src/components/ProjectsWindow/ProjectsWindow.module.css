@@ -1,0 +1,1338 @@
+.projectViewer {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    color: rgba(228, 239, 245, 0.92);
+
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(101, 66, 138, 0.065),
+            rgba(62, 113, 150, 0.035) 44%,
+            rgba(114, 212, 75, 0.022) 66%,
+            rgba(43, 24, 61, 0.055) 82%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(20, 22, 29, 0.99),
+            rgba(8, 10, 13, 1)
+        );
+}
+
+.projectViewer::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    background: 
+        var(--grain-texture),
+        repeating-linear-gradient(
+            180deg,
+            transparent 0,
+            transparent 4px,
+            rgba(114, 212, 75, 0.012) 4px,
+            rgba(114, 212, 75, 0.012) 5px
+        );
+
+    background-size: 
+        95px 95px,
+        100% 5px;
+
+    opacity: 0.16;
+
+    pointer-events: none;
+}
+
+.projectViewer > * {
+    position: relative;
+    z-index: 1;
+}
+
+.viewerStage {
+    flex: 1;
+    min-height: 0;
+
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    align-items: center;
+    gap: 14px;
+
+    padding: 18px;
+}
+
+.projectCard {
+    height: 100%;
+    min-height: 0;
+
+    display: grid;
+    grid-template-columns: minmax(220px, 42%) minmax(0, 1fr);
+
+    overflow: hidden;
+
+    border: 
+        1px solid rgba(114, 212, 75, 0.14);
+
+    border-radius: 14px;
+
+    color: rgba(224, 237, 242, 0.92);
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            135deg,
+            rgba(101, 66, 138, 0.09),
+            transparent 38%,
+            rgba(62, 113, 150, 0.045) 66%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(37, 40, 49, 0.98),
+            rgba(17, 19, 25, 0.99)
+        );
+
+    background-size: 
+        95px 95px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal,
+        normal;
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.055),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.52),
+        0 8px 22px rgba(0, 0, 0, 0.42);
+}
+
+.projectImageArea {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px;
+
+    border-right: 
+        1px solid rgba(114, 212, 75, 0.12);
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            145deg,
+            rgba(101, 66, 138, 0.12),
+            transparent 42%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(42, 46, 56, 0.98),
+            rgba(12, 14, 18, 1)
+        );
+
+    background-size: 
+        95px 95px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal,
+        normal;
+
+}
+
+.projectImage {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    border: 
+        1px solid rgba(62, 113, 150, 0.22);
+
+    border-radius: 8px;
+
+    background: rgba(5, 7, 9, 0.94);
+
+    box-shadow: 
+        inset 0 0 14px rgba(0, 0, 0, 0.58),
+        0 5px 14px rgba(0, 0, 0, 0.46);
+}
+
+.imagePlaceholder {
+    width: 100%;
+    min-height: 220px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    border: 
+        1px solid rgba(62, 113, 150, 0.2);
+
+    border-radius: 8px;
+
+    background: 
+        radial-gradient(
+            circle at center,
+            rgba(114, 212, 75, 0.035),
+            transparent 56%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(35, 40, 48, 0.96),
+            rgba(7, 9, 12, 0.99)
+        );
+
+    box-shadow: 
+        inset 2px 2px 8px rgba(0, 0, 0, 0.72),
+        inset -1px -1px 0 rgba(255, 255, 255, 0.035);
+
+    text-align: center;
+}
+
+.projectVideo {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    aspect-ratio: 16/ 9;
+    object-fit: cover;
+
+    border: none;
+    border-radius: 13px 13px 0 0;
+
+    background: rgba(5, 7, 9, 0.94);
+
+    box-shadow: none;
+}
+
+.projectContent {
+    min-height: 0;
+
+    overflow: visible;
+
+    padding: 12px 10px 16px;
+}
+
+.projectHeading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.projectTitle {
+    margin: 0;
+
+    color: rgba(235, 246, 250, 0.94);
+
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.055em;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.82),
+        0 0 5px rgba(114, 212, 75, 0.09);
+}
+
+.projectCounter {
+    margin: 5px 0 0;
+
+    color: rgba(155, 229, 110, 0.58);
+
+    font-size: 11px;
+}
+
+.projectStatus {
+    flex-shrink: 0;
+
+    padding: 5px 8px;
+
+    border: 
+        1px solid rgba(114, 212, 75, 0.18);
+
+    border-radius: 5px;
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            180deg,
+            rgba(101, 66, 138, 0.42),
+            rgba(24, 27, 34, 0.92)
+        );
+
+    background-size: 
+        80px 80px,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal;
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+
+    font-size: 10px;    
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.projectDescription {
+    margin: 18px 0;
+
+    color: rgba(208, 224, 231, 0.82);
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.projectSection {
+    margin-top: 20px;
+}
+
+.projectSection h3,
+.detailsSection h3 {
+    margin: 0 0 9px;
+
+    padding-bottom: 5px;
+
+    border-bottom: 
+        1px solid rgba(114, 212, 75, 0.12);
+
+    color: rgba(155, 229, 110, 0.78);
+
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+
+    box-shadow: 
+        0 1px 0 rgba(0, 0, 0, 0.28);
+}
+
+.technologyList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.technology {
+    padding: 4px 7px;
+
+    border: 
+        1px solid rgba(101, 66, 138, 0.22);
+
+    border-radius: 5px;
+
+    color: rgba(224, 237, 242, 0.88);
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(92, 63, 120, 0.36),
+            rgba(25, 28, 35, 0.88)
+        );
+
+    box-shadow: 
+        inset 0 -1px 0 rgba(255, 255, 255, 0.055);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.navigationButton {
+    width: 38px;
+    height: 64px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    border: 
+        1px solid rgba(101, 66, 138, 0.28);
+
+    border-radius: 8px;
+
+    color: rgba(155, 229, 110, 0.86);
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(62, 66, 78, 0.96),
+            rgba(15, 17, 22,1)
+        );
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.055),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+        0 4px 10px rgba(0, 0, 0, 0.32);
+
+    font: inherit;
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.navigationGlyph {
+    display: block;
+
+    width: 1em;
+
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1;
+
+    text-align: center;
+
+    transform: translateX(-1px);
+
+    pointer-events: none;
+}
+
+.navigationButton:hover {
+    border-color: rgba(114, 212, 75, 0.32);
+
+    color: rgba(190, 244, 155, 1);
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(75, 64, 94, 0.98),
+            rgba(18, 20, 26, 1)
+        );
+}
+
+.featureList {
+    margin: 0;
+    padding-left: 18px;
+
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.featureList li + li {
+    margin-top: 4px;
+}
+
+.projectActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.developmentNotice {
+    margin: 12px 0;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.45;
+
+    text-shadow:
+     0 1px 2px rgba(0, 0, 0, 0.78),
+     0 0 5px rgba(241, 207, 92, 0.08);
+}
+
+.actionButton {
+    min-width: 96px;
+    height: 28px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 12px;
+
+    border: 
+        1px solid rgba(101, 66, 138, 0.28);
+    
+    border-radius: 6px;
+
+    color: rgba(226, 239, 244, 0.9);
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(92, 63, 120, 0.42),
+            rgba(22, 25, 31, 0.98)
+        );
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.46);
+
+    font: inherit;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.actionButton:hover:not(:disabled) {
+    border-color: 
+        rgba(114, 212, 75, 0.35);
+
+    color: white;
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(105, 72, 137, 0.5),
+            rgba(24, 27, 34, 1)
+        );
+}
+
+.actionButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.detailsOverlay {
+    position:absolute;
+    inset: 0;
+
+    z-index: 50;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 22px;
+
+    background: rgba(4, 6, 9, 0.72);
+
+    backdrop-filter: 
+        blur(8px)
+        saturate(110%);
+
+    -webkit-backdrop-filter: 
+        blur(8px)
+        saturate(110%);
+}
+
+.detailsPanel {
+    width: min(620px, 100%);
+    max-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border: 
+        1px solid rgba(114, 212, 75, 0.18);
+
+    color: rgba(224, 237, 242, 0.92);
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            135deg,
+            rgba(101, 66, 138, 0.11),
+            transparent 38%,
+            rgba(62, 113, 150, 0.055) 66%,
+            rgba(114, 212, 75, 0.025)
+        ),
+        linear-gradient(
+            180deg,
+            rgba(39, 42, 51, 0.99),
+            rgba(16, 18, 23, 1)
+        );
+
+    background-size: 
+        95px 95px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        screen,
+        normal;
+
+    box-shadow: 
+        inset 1px 1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.58),
+        0 14px 34px rgba(0, 0, 0, 0.56),
+        0 0 18px rgba(114, 212, 75, 0.035);
+}
+
+.detailsHeader {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding: 16px 18px 14px;
+
+    border-bottom: 
+        1px solid rgba(114, 212, 75, 0.14);
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            110deg,
+            transparent 12%,
+            rgba(101, 66, 138, 0.16) 32%,
+            rgba(62, 113, 150, 0.09) 47%,
+            rgba(114, 212, 75, 0.045) 58%,
+            transparent 78%
+        ),
+        rgba(22, 24, 31, 0.94);
+
+    background-size: 
+        90px 90px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal,
+        normal;
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.055),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.46);
+}
+
+.detailsTitle {
+    margin: 0 0 9px;
+
+    color: rgba(235, 246, 250, 0.96);
+
+    font-size: 20px;
+    font-weight: 650;
+    letter-spacing: 0.025em;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.84);
+}
+
+.detailsCloseButton {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+
+
+    flex: 0 0 24px;
+
+    display: grid;
+    place-items: center;
+
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 
+        1px solid rgba(114, 212, 75, 0.5);
+
+    border-radius: 50%;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+
+    color: rgba(155, 229, 110, 0.86);
+
+    background: 
+        var(--grain-texture),
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 255, 255, 0.13),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 68% 75%,
+            rgba(0, 0, 0, 0.34),
+            transparent 48%
+        ),
+
+        linear-gradient(
+            145deg,
+            rgba(105, 72, 137, 0.9),
+            rgba(31, 28, 40, 0.98) 55%,
+            rgba(14, 16, 20, 1)
+        );
+
+    background-size: 
+        60px 60px,
+        100% 100%,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        screen,
+        multiply,
+        normal;
+
+    box-shadow: 
+        inset 1px 1px 1px rgba(255, 255, 255, 0.08),
+        inset -2px -2px 4px rgba(0, 0, 0, 0.38),
+        0 2px 5px rgba(0, 0, 0, 0.34);
+
+    cursor: pointer;
+
+    transition: 
+        filter 140ms ease,
+        box-shadow 140ms ease,
+        transform 140ms ease;
+}
+
+.closeGlyph {
+    display: block;
+
+    color: rgba(24, 30, 24, 0.9);
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    transform: translateY(-0.5px);
+
+    text-shadow: 
+        0 1px 0 rgba(181, 239, 155, 0.46),
+        0 -1px 0 rgba(0, 0, 0, 0.72);
+
+    pointer-events: none;
+}
+
+.detailsCloseButton:hover {
+    color: rgba(190, 244, 155, 1);
+
+    border-color: 
+        rgba(190, 244, 155, 0.6);
+
+    filter: brightness(1.08);
+}
+
+.detailsCloseButton:active {
+    transform: translateY(1px);
+
+    filter: brightness(0.78);
+
+    background: 
+        var(--grain-texture),
+        
+        radial-gradient(
+            circle at 62% 68%,
+            rgba(255, 255, 255, 0.035),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 36% 30%,
+            rgba(0, 0, 0, 0.32),
+            transparent 50%
+        ),
+        
+        linear-gradient(
+            145deg,
+            rgba(45, 35, 57, 0.98),
+            rgba(13, 15, 19, 1)
+        );
+
+        background-size: 
+            60px 60px,
+            100% 100%,
+            100% 100%,
+            100% 100%;
+
+        background-blend-mode: 
+            soft-light,
+            normal,
+            multiply,
+            normal;
+
+        box-shadow: 
+            inset 3px 3px 5px rgba(0, 0, 0, 0.58),
+            inset -1px -1px 2px rgba(255, 255, 255, 0.05);
+}
+
+.detailsCloseButton:active .closeGlyph {
+    transform: translate(0.25px, 0.5px);
+
+    color: rgba(16, 21, 16, 0.9);
+
+    text-shadow: 
+        0 1px 0 rgba(155, 229, 110, 0.2),
+        0 -1px 0 rgba(0, 0, 0, 0.82);
+}
+
+
+.detailsContent {
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+
+    padding: 18px;
+
+    color: rgba(208, 224, 231, 0.84);
+
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(101, 66, 138, 0.025),
+            transparent 42%,
+            rgba(62, 113, 150, 0.02)
+        ),
+        rgba(11, 13, 17, 0.58);
+}
+
+.detailsSection + .detailsSection {
+    margin-top: 22px;
+}
+
+.detailsSection p {
+    margin: 0;
+
+    color: rgba(208, 224, 231, 0.84);
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.detailsActions {
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    padding: 12px 16px;
+
+    border-top: 
+        1px solid rgba(114, 212, 75, 0.14);
+
+    background: 
+        var(--grain-texture), 
+        linear-gradient(
+            110deg,
+            transparent 12%,
+            rgba(101, 66, 138, 0.14) 34%,
+            rgba(62, 113, 150, 0.08) 48%,
+            rgba(114, 212, 75, 0.035) 59%,
+            transparent 80%
+        ),
+        rgba(18, 20, 26, 0.97);
+
+    background-size: 
+        90px 90px,
+        100% 100%,
+        100% 100%;
+
+    
+    background-blend-mode:
+        soft-light,
+        normal,
+        normal;
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.progressGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 9px;
+}
+
+.progressTrack {
+    width: 130px;
+    height: 7px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(7, 9, 12, 0.98),
+            rgba(45, 50, 59, 0.96)
+        );
+
+    box-shadow: 
+        inset 1px 1px 3px rgba(0, 0, 0, 0.72),
+        inset -1px -1px 0 rgba(255, 255, 255, 0.055);
+}
+
+.progressFill {
+    height: 100%;
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            180deg, 
+            #9be56e,
+            #4e9e36
+        );
+
+    background-size: 
+        70px 70px,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal;
+
+    box-shadow: 
+        0 0 5px rgba(114, 212, 75, 0.22);
+
+    transition: width 220ms ease;
+}
+
+.progressLabel {
+    color: rgba(155, 229, 110, 0.62);
+
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.footer {
+    height: 30px;
+    flex: 0 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px;
+
+    border-top: 1px solid rgba(114, 212, 75, 0.16);
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            110deg,
+            transparent 10%,
+            rgba(101, 66, 138, 0.2) 29%,
+            rgba(62, 113, 150, 0.13) 44%,
+            rgba(114, 212, 75, 0.09) 58%,
+            rgba(43, 24, 61, 0.2) 70%,
+            transparent 86%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(51, 34, 74, 0.99),
+            rgba(25, 27, 34, 0.99) 48%,
+            rgba(11, 13, 16, 1)
+        );
+
+    background-size: 
+        95px 95px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal,
+        normal;
+    
+    box-shadow:
+        inset 0 1px 0 rgba(215, 231, 242, 0.09),
+        inset 0 -1px 0px rgba(0, 0, 0, 0.72);
+
+    font-size: 10px;
+    letter-spacing: 0.035em;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.82);
+}
+
+.footer span {
+    color: rgba(235, 246, 250, 0.94);
+
+    font-weight: 500;
+    letter-spacing: 0.055em;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.82),
+        0 0 5px rgba(114, 212, 75, 0.22),
+        0 0 10px rgba(114, 212, 75, 0.08);
+}
+
+@media (max-width: 760px) {
+    .detailsOverlay {
+        padding: 6px;
+    }
+
+    .detailsPanel {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+
+        border-radius: 10px;
+    }
+
+    .detailsHeader {
+        gap: 10px;
+
+        padding: 12px 12px 10px;
+    }
+
+    .detailsTitle {
+        font-size: 17px;
+    }
+
+    .detailsContent {
+        padding: 14px;
+    }
+
+    .detailsSection + .detailsSection {
+        margin-top: 18px;
+    }
+
+    .detailsActions {
+        gap: 7px;
+
+        padding: 10px;
+    }
+
+    .detailsActions .actionButton {
+        flex: 1 1 90px;
+    }
+
+    .viewerStage {
+        flex: 1;
+        min-height: 0;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        align-items: start;
+
+        gap: 8px;
+        padding: 8px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .viewerStage > .navigationButton:first-child {
+        grid-column: 1;
+        grid-row: 1;
+
+        justify-self: start;
+    }
+
+    .viewerStage > .navigationButton:last-child {
+        grid-column: 2;
+        grid-row: 1;
+
+        justify-self: end;
+    }
+
+    .navigationButton {
+        width: 38px;
+        height: 38px;
+    }
+
+    .navigationGlyph {
+        font-size: 24px;
+    }
+
+    .projectCard {
+        grid-column: 1 / -1;
+        grid-row: 2;
+
+        width: 100%;
+        height: auto;
+
+        min-width: 0;
+        min-height: 0;
+
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+
+        overflow: hidden;
+
+        border-radius: 14px;
+    }
+
+    .projectImageArea {
+        min-height: 0;
+
+        padding: 0;
+
+        overflow: hidden;
+
+        border-right: none;
+        border-bottom: 1px solid rgba(114, 212, 75, 0.12);
+
+        border-radius: 13px 13px 0 0;
+    }
+
+    .projectVideo {
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+
+        border-radius: 13px 13px 0 0;
+    }
+
+    .imagePlaceholder {
+        min-height: 180px;
+
+        padding: 12px;
+    }
+
+    .projectContent {
+        min-height: 0;
+
+        overflow: visible;
+
+        padding: 10px 10px 16px;
+    }
+
+    .projectHeading {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .projectTitle {
+        font-size: 17px;
+        line-height: 1.2;
+    }
+
+    .projectStatus {
+        align-self: flex-start;
+    }
+
+    .projectDescription {
+        margin: 14px 0;
+
+        font-size: 12px;
+        line-height: 1.55;
+    }
+
+    .projectSection {
+        margin-top: 16px;
+    }
+
+    .projectGroup {
+        flex-wrap: wrap;
+    }
+
+    .progressTrack {
+        width: min(130px, 100%);
+    }
+
+    .projectActions {
+        gap: 7px;
+
+        margin-top: 18px;
+    }
+
+    .actionButton {
+        min-width: 0;
+        height: 30px;
+
+        flex: 1 1 90px;
+
+        padding: 0 8px;
+    }
+
+    .developmentNotice {
+        color: rgba(241, 207, 92, 0.82);
+    }
+
+    .footer {
+        padding: 0 9px;
+
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 950px) and (orientation: landscape) {
+    .viewerStage {
+        flex: 1;
+        min-height: 0;
+
+        display: grid;
+        grid-template-columns: 38px minmax(0, 1fr) 38px;
+        grid-template-rows: auto;
+
+        align-items: start;
+
+        gap: 8px;
+        padding: 8px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .viewerStage > .navigationButton:first-child {
+        grid-column: 1;
+        grid-row: 1;
+
+        align-self: center;
+        justify-self: center;
+    }
+
+    .viewerStage > .navigationButton:last-child {
+        grid-column: 3;
+        grid-row: 1;
+
+        align-self: center;
+        justify-self: center;
+    }
+
+    .navigationButton {
+        width: 30px;
+        height: 42px;
+    }
+
+    .navigationGlyph {
+        font-size: 22px;
+    }
+
+    .projectCard {
+        grid-column: 2;
+        grid-row: 1;
+
+        width: 100%;
+        height: auto;
+
+        min-width: 0;
+        min-height: 0;
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+
+        overflow: hidden;
+
+        border-radius: 14px;
+    }
+
+    .projectImageArea {
+        width: 100%;
+        height: calc(100dvh - 96px);
+
+        min-height: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0;
+
+        overflow: hidden;
+
+        border-right: none;
+        border-bottom: 1px solid rgba(114, 212, 75, 0.12);
+
+        border-radius: 13px 13px 0 0;
+    }
+
+    .projectVideo {
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        aspect-ratio: auto;
+        object-fit: cover;
+
+        border-radius: 13px 13px 0 0;
+    }
+
+    .imagePlaceholder {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+
+        padding: 12px;
+    }
+
+    .projectContent {
+        min-height: 0;
+
+        overflow: visible;
+
+        padding: 12px 12px 18px;
+    }
+
+    .projectHeading {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .projectTitle {
+        font-size: 16px;
+    }
+
+    .projectDescription {
+        margin: 12px 0;
+
+        font-size: 11px;
+
+        line-height: 1.5;
+    }
+
+    .projectSection {
+        margin-top: 14px;
+    }
+
+    .projectActions {
+        margin-top: 14px;
+    }
+
+    .footer {
+        padding: 0 9px;
+
+        font-size: 9px;
+    }
+}
+
+
+

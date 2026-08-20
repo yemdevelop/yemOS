@@ -1,0 +1,206 @@
+.controlSpacer {
+    width: 5px;
+}
+
+.aboutContent {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 24px;
+
+    overflow: auto;
+
+    color: rgba(255, 255, 255, 0.94);
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(180, 225, 238, 0.025) 42%,
+            rgba(164, 128, 218, 0.025) 72%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(8, 24, 39, 0.76),
+            rgba(3, 13, 25, 0.84)
+        );
+
+    background-size: 
+        80px 80px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal,
+        normal;
+
+    background-attachment: 
+        local, 
+        local,
+        local;
+
+    backdrop-filter: 
+        blur(12px)
+        saturate(108%);
+
+    -webkit-backdrop-filter: 
+        blur(12px)
+        saturate(108%);
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+
+    opacity: 0.8;
+
+    display: block;
+    object-fit: contain;
+
+    margin-bottom: 4px;
+
+    filter: 
+        brightness(1.02)
+        contrast(1.02)
+        drop-shadow(
+            0 2px 4px
+            rgba(0, 0, 0, 0.32)
+        );
+}
+
+.heading {
+    margin: 0;
+
+    color: rgba(255, 255 ,255, 0.98);
+
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.04rem;
+
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+.version {
+    margin: 0;
+    
+    color: rgba(225, 241, 247, 0.72);
+
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+}
+
+.specs {
+    width: min(100%, 300px);
+
+    margin-top: 4px;
+    padding: 14px 16px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+
+    text-align: center;
+}
+
+.specs p {
+    margin: 0 0 4px;
+
+    color: rgba(235, 247, 251, 0.86);
+
+    font-size: 0.83rem;
+    line-height: 1.8;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.55);
+}
+
+.specs p:last-child {
+    margin-bottom: 0;
+}
+
+.moreInfoButton {
+    min-width: 110px;
+    height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 4px;
+    padding: 0 20px;
+
+    border: 1px solid rgba(218, 248, 255, 0.18);
+    border-radius: 10px;
+
+    color: rgba(255, 255, 255, 0.94);
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.09),
+            rgba(190, 229, 238, 0.04)
+        ),
+        rgba(15, 36, 52, 0.09);
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 5px 12px rgba(0, 0, 0, 0.2);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.035em;
+
+    cursor: pointer;
+
+    transition: 
+        background 150ms ease,
+        border-color 150ms ease,
+        filter 150ms ease;
+}
+
+.moreInfoButton:hover {
+    border-color: rgba(218, 248, 255, 0.3);
+
+    background:     
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.13),
+            rgba(190, 229, 238, 0.06)
+        ),
+        rgba(18, 43, 60 , 0.68);
+}
+
+.moreInfoButton:active {
+    filter: brightness(0.94);
+}
+
+.moreInfoButton:focus-visible {
+    outline: 1px solid rgba(218, 248, 255, 0.55);
+    outline-offset: 2px;
+}
+
+.footer {
+    margin-top: auto;
+    padding-top: 12px;
+
+    color: rgba(218, 236, 242, 0.58);
+    
+    font-size: 11px;
+    line-height: 1.45;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+}

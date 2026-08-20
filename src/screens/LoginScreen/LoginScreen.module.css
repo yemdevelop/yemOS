@@ -1,0 +1,1232 @@
+.loginScreen {
+
+    --menu-offset: 0.75rem;
+    --menu-gap: 0.45rem;
+    --menu-padding: 0.4rem 0.55rem;
+
+    --menu-icon-size: 20px;
+    --power-size: 26px;
+
+    --clock-size: clamp(4rem, 8vw, 6rem);
+    --date-size: 0.88rem;
+
+    --content-width: min(90vw, 520px);
+    --content-gap: 2rem;
+    --content-offset: -40%;
+
+    --login-gap: 1.35rem;
+
+    --avatar-system: 220px;
+    --avatar-frame: 150px;
+    --avatar-glow: 170px;
+    --avatar-outer: 205px;
+    --avatar-middle: 175px;
+
+    --outer-ring-inner: 72px;
+    --outer-ring-outer: 77px;
+
+    --middle-ring-inner: 58px;
+    --middle-ring-outer: 63px;
+
+    --credential-gap: 0.75rem;
+    --credential-margin: 1rem;
+
+    --password-width: clamp(165px, 55vw, 190px);
+    --password-height: 34px;
+
+    --message-size: 0.82rem;
+
+    width: 100vw;
+    height: 100dvh;
+
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+}
+
+.menuBar {
+    position: absolute;
+    top: var(--menu-offset);
+    right: var(--menu-offset);
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    gap: var(--menu-gap);
+
+    padding: var(--menu-padding);
+
+    overflow: hidden;
+
+    border: 1px solid rgba(126, 240, 255, 0.16);
+    border-radius: 999px;
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(11, 29, 45, 0.55),
+            rgba(3, 10, 20, 0.7)
+        );
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 0 14px rgba(73, 230, 255, 0.065);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.menuBar::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: 
+        linear-gradient(
+            105deg,
+            transparent 34%,
+            rgba(255, 255, 255, 0.025) 43%,
+            rgba(142, 246, 255, 0.045) 49%,
+            rgba(183, 146, 255, 0.025) 55%,
+            transparent 64%
+        );
+
+    transform: translateX(-64%);
+
+    animation: loginMenuReflection 24s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+.menuBar > * {
+    position: relative;
+    z-index: 1;
+}
+
+.menuIcon {
+    width: var(--menu-icon-size); 
+    height: var(--menu-icon-size);
+
+    display: block;
+    object-fit: contain;
+
+    opacity: 0.94;
+
+    filter: 
+        brightness(1.02)
+        contrast(1.02)
+        drop-shadow(
+                0 0 1px 
+                rgba(255, 255, 255, 0.35)
+        )
+        drop-shadow(
+            0 0 3px 
+            rgba(73, 230, 255, 0.08)
+        );
+
+    pointer-events: none;
+}
+
+.keyboardIcon {
+    width: 18px;
+    height: 18px;
+}
+
+.powerButton {
+    width: var(--power-size);
+    height: var(--power-size);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px;
+    margin: 0;
+
+    border: 1px solid transparent;
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: 
+        background 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+.powerButton img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: contain;
+
+    opacity: 0.94;
+
+    filter: 
+        brightness(1.02)
+        contrast(1.02)
+        drop-shadow(
+            0 0 1px 
+            rgba(255, 255, 255, 0.35)
+        )
+        drop-shadow(
+            0 0 3px 
+            rgba(73, 230, 255, 0.08)
+        );
+
+    pointer-events: none;
+
+    transition:
+        opacity 180ms ease,
+        filter 180ms ease,
+        transform 180ms ease;
+}
+
+.powerButton:hover {
+    border-color: transparent;
+
+    background: transparent;
+
+    box-shadow: none;
+}
+
+.powerButton:hover img {
+    opacity: 1;
+
+    transform: scale(1.03);
+
+    filter: 
+        brightness(1.12)
+        contrast(1.04)
+        drop-shadow(
+            0 0 2px 
+            rgba(255, 255, 255, 0.86)
+        )
+        drop-shadow(
+            0 0 6px 
+            rgba(73, 230, 255, 0.22)
+        );
+}
+
+.powerButton:active img {
+    transform: scale(0.94);
+}
+
+.powerButton:focus-visible {
+    outline: 1px solid rgba(142, 246, 255, 0.72);
+    outline-offset: 2px;
+}
+
+.keyboardWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    min-height: 24px;
+
+    padding: 0 0.35rem;
+
+    border-right: 1px solid rgba(175, 244, 255, 0.14);
+}
+
+.lang {
+  color: rgba(217, 248, 255, 0.73);
+  
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.11em;
+
+  text-shadow: 
+    0 0 5px rgba(73, 230, 255, 0.22);
+
+user-select: none;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.fadeIn {
+    opacity: 1;
+    transition: opacity 450ms ease;
+}
+
+.fadeOut {
+    opacity: 0;
+    transform: translate(-50%, -35%);
+    transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.contentColumn {
+    color: rgba(255, 253, 248, 0.96);
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+    transform: 
+        translate(-50%, var(--content-offset));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: var(--content-gap);
+
+    width: var(--content-width);
+
+}
+
+.timeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    gap: 0.45rem;
+}
+
+.time {
+    font-size: var(--clock-size);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+
+    background: 
+        linear-gradient(
+            135deg,
+            #fff 0%,
+            #dffeff 18%,
+            #8ef6ff 42%,
+            #fff 58%,
+            #a8dfff 76%,
+            #b792ff 100%   
+        );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    
+
+    text-shadow: 
+    0 0 10px rgba(120, 255, 255, 0.25),
+    0 0 20px rgba(70, 180, 255, 0.18),
+    0 0 40px rgba(150, 120, 255, 0.12);
+
+    animation: clockGlow 5s ease-in-out infinite;
+}
+
+.date {
+    position: relative;
+
+    padding: 0.35rem 1.1rem;
+
+    color: rgba(213, 248, 255, 0.82);
+
+    font-size: var(--date-size);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.14rem;
+    text-align: center;
+    text-transform: uppercase;
+
+    text-shadow: 
+        0 0 7px rgba(73, 230, 255, 0.25);
+
+    user-select: none;
+
+    animation: dateGlow 6s ease-in-out infinite;
+}
+
+.date::after {
+    content: "";
+
+    position: absolute;
+    right: 12%;
+    bottom: -0.2rem;
+    left: 12%;
+
+    height: 1px;
+
+    background: 
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(73, 230, 255, 0.35),
+            rgba(255, 255, 255, 0.75),
+            rgba(167, 118, 255, 0.35),
+            transparent
+        );
+
+    box-shadow: 
+        0 0 7px rgba(73, 230, 255, 0.3);
+}
+.loginSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--login-gap);
+}
+
+.avatarSystem {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: var(--avatar-system);
+    height: var(--avatar-system);
+
+    margin-bottom: 1.75rem;
+}
+
+.avatarSystem::before {
+    content: "";
+
+    position: absolute;
+    z-index: 0;
+
+    width: 78%;
+    height: 42%;
+
+    bottom: 7%;
+
+    border-radius: 50%;
+
+    background: 
+        radial-gradient(
+            ellipse,
+            rgba(0, 0, 0, 0.42),
+            rgba(3, 14, 27, 0.18) 48%,
+            transparent 74%
+        );
+
+    filter: blur(18px);
+
+    pointer-events: none;
+}
+
+.avatarFrame {
+    position: relative;
+    z-index: 4;
+
+    width: var(--avatar-frame);
+    height: var(--avatar-frame);
+
+    overflow: hidden;
+
+    border: 1px solid rgba(142, 246, 255, 0.32);
+    border-radius: 50%;
+
+    background: rgba(4, 15, 28, 0.5);
+
+    box-shadow: 
+        inset 0 0 18px rgba(73, 230, 255, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        0 0 12px rgba(73, 230, 255, 0.18),
+        0 0 28px rgba(108, 129, 255, 0.08);
+
+    isolation: isolate;
+}
+
+.avatarFrame::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    border-radius: inherit;
+
+    background: 
+        repeating-linear-gradient(
+            180deg,
+            transparent 0,
+            transparent 3px,
+            rgba(142, 246, 255, 0.07) 3px,
+            rgba(142, 246, 255, 0.07) 4px,
+            transparent 4px,
+            transparent 7px
+    );
+
+    opacity: 0.42;
+    mix-blend-mode: screen;
+    
+
+    pointer-events: none;
+}
+
+.avatarFrame::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    border-radius: inherit;
+
+    background: 
+        linear-gradient(
+            180deg,
+            transparent 0%,
+            transparent 43%,
+            rgba(142, 246, 255, 0.13) 47%,
+            rgba(255, 255, 255, 0.08) 49%,
+            transparent 53%,
+            transparent 100%
+        );
+
+    opacity: 0;
+
+    animation: 
+        hologramSignalLine 9s steps(1, end) infinite;
+
+    pointer-events: none;
+}
+
+.avatarInnerGlow {
+    position: absolute;
+    z-index: 1;
+
+    width: var(--avatar-glow);
+    height: var(--avatar-glow);
+
+    border-radius: 50%;
+
+    background: 
+        radial-gradient(
+            circle at 42% 38%,
+            rgba(255, 255, 255, 0.22),
+            rgba(120, 255, 255, 0.48) 20%,
+            rgba(0, 180, 255, 0.2) 54%,
+            rgba(126, 92, 255, 0.12) 70%,
+            transparent 86%
+        );
+
+    filter: blur(18px);
+
+    box-shadow: 
+        0 16px 34px rgba(0, 0, 0, 0.34),
+        0 0 42px rgba(73, 230, 255, 0.16),
+        0 0 60px rgba(154, 112, 255, 0.08);
+
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+.avatarOuterRing {
+    position: absolute;
+
+    width: var(--avatar-outer);
+    height: var(--avatar-outer);
+
+    border-radius: 50%;
+
+    z-index: 2;
+
+    animation: rotateRing 18s infinite;
+
+    background:
+        conic-gradient(
+            from 0deg,
+
+            transparent 0deg,
+            rgba(110, 255, 255, 0.1) 18deg,
+
+            transparent 36deg,
+            rgba(80, 180, 255, 0.35) 52deg,
+
+            transparent 76deg,
+            rgba(180, 120, 255, 0.25) 96deg,
+
+            transparent 128deg,
+            rgba(110, 255, 255, 0.1) 150deg,
+
+            transparent 180deg,
+            rgba(255, 255, 255, 0.1) 205deg,
+
+            transparent 230deg,
+            rgba(120, 255, 255, 0.2) 255deg,
+
+            transparent 282deg,
+            rgba(80, 160, 255, 0.1) 315deg,
+
+            transparent 360deg
+        );
+
+    mask:
+        radial-gradient(
+            circle,
+            transparent var(--outer-ring-inner),
+            black var(--outer-ring-outer)
+        );
+
+    -webkit-mask: 
+        radial-gradient(
+            circle, 
+            transparent var(--outer-ring-inner),
+            black var(--outer-ring-outer)
+        );
+}
+
+.avatarMiddleRing {
+    position: absolute;
+
+    width: var(--avatar-middle);
+    height: var(--avatar-middle);
+
+    border-radius: 50%;
+
+    z-index: 3;
+
+    animation: rotateRingReverse 10s linear infinite;
+
+    background: 
+        conic-gradient(
+            from 180deg,
+
+            transparent 0deg,
+            rgba(255, 255, 255, 0.05) 22deg,
+
+            transparent 46deg,
+            rgba(120, 255, 255, 0.35) 68deg,
+
+            transparent 110deg,
+            rgba(120, 180, 255, 0.2) 142deg,
+
+            transparent 190deg,
+            rgba(170, 120, 255, 0.2) 214deg,
+
+            transparent 258deg,
+            rgba(120, 255, 255, 0.1) 292deg,
+
+            transparent 360deg
+        );
+
+    mask: 
+        radial-gradient(
+            circle,
+            transparent var(--middle-ring-inner),
+            black var(--middle-ring-outer)
+        );
+    
+    -webkit-mask:
+        radial-gradient(
+            circle, 
+            transparent var(--middle-ring-inner),
+            black var(--middle-ring-outer)
+        );
+}
+
+.loginAvatar {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    opacity: 0.88;
+
+    filter: 
+        saturate(0.82)
+        contrast(1.08)
+        brightness(1.06)
+        sepia(0.04)
+        hue-rotate(4deg);
+
+    transform: scale(1.01);
+
+    animation: 
+        hologramFlicker 8s steps(1, end) infinite;
+        
+    will-change: opacity, filter;
+}
+
+.userName {
+    font-size: 1.35rem;
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+
+    color: rgba(235, 255, 255, 0.96);
+
+    text-shadow: 
+        0 0 8px rgba(73, 230, 255, 0.22);
+
+    user-select: none;
+}
+
+.loginMessage {
+    width: 260px;
+
+    text-align: center;
+
+    font-size: var(--message-size);
+
+    letter-spacing: 0.04rem;
+
+    color: rgba(205, 235, 245, 0.72);
+
+    opacity: .55;
+
+    animation: messageGlow 6s ease-in-out infinite;
+
+    line-height: 1.5;
+}
+
+.credentialSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--credential-gap);
+
+    margin-top: var(--credential-margin);
+}
+
+.passwordContainer {
+    position: relative;
+
+    width: var(--password-width);
+    height: var(--password-height);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(120, 245, 255, 0.38);
+    border-radius: 6px;
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(11, 30, 48, 0.82),
+            rgba(4, 12, 24, 0.92)
+        );
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+        0 0 12px rgba(73, 230, 255, 0.12);  
+
+    transition: 
+        border-color 250ms ease,
+        box-shadow 250ms ease;
+}
+
+.passwordContainer::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -45%;
+
+    width: 38%;
+
+    background: 
+        linear-gradient(
+            105deg,
+            transparent 38%,
+            rgba(255, 255, 255, 0.015) 46%,
+            rgba(142, 246, 255, 0.035) 50%,
+            rgba(183, 146, 255, 0.015) 54%,
+            transparent 62%
+        );
+
+    width: 32%;
+
+    animation: passwordSweep 7s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+.passwordContainer::after {
+    content: "";
+
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+    left: 8px;
+
+    height: 1px;
+
+    background: 
+        linear-gradient(
+            90deg, 
+            transparent,
+            rgba(73, 230, 255, 0.2),
+            rgba(255, 255, 255, 0.65),
+            rgba(142, 102, 255, 0.28),
+            transparent
+        );
+
+    box-shadow: 0 0 6px rgba(73, 230, 255, 0.3);
+
+    pointer-events: none;
+}
+
+.passwordDisplay {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-width: 0;
+
+    padding-left: 0;
+
+    color: rgba(224, 254, 255, 0.96);
+
+    font-size: 1.25rem;
+    line-height: 1;
+    letter-spacing: 0.22rem;
+
+    text-shadow: 
+        0 0 6px rgba(73, 230, 255, 0.5),
+        0 0 12px rgba(142, 102, 255, 0.2);
+}
+
+.cursor {
+    color: #8ef6ff;
+
+    text-shadow: 
+        0 0 5px rgba(73, 230, 255, 0.8);
+    
+    animation: blink 1s steps(1) infinite;
+}
+
+.arrowButton {
+    position: absolute;
+
+    top: 50%;
+    right: 0.35rem;
+    z-index: 3;
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+
+    border: 1px solid rgba(142, 246, 255, 0.48);
+    border-radius: 50%;
+
+    background: 
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 255, 255, 0.85),
+            rgba(73, 230, 255, 0.48) 25%,
+            rgba(22, 83, 120, 0.78) 58%,
+            rgba(4, 15, 29, 0.95) 100%
+        );
+
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.45),
+        0 0 8px rgba(73, 230, 255, 0.35);
+
+    transform: translateY(-50%);
+
+    cursor: pointer;
+
+    transition: 
+        transform 180ms ease,
+        filter 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.arrowButton:hover:not(:disabled) {
+    transform: 
+        translateY(-50%)
+        scale(1.04);
+
+    filter: brightness(1.15);
+
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.55),
+        0 0 12px rgba(73, 230, 255, 0.6),
+        0 0 20px rgba(142, 102, 255, 0.22);
+}
+
+.arrowButton:active:not(:disabled) {
+    transform: 
+        translateY(-50%)
+        scale(0.95);
+}
+
+.arrowButton:disabled {
+    opacity: 0.35;
+    cursor: default;
+    filter: saturate(0.5);
+}
+
+.arrowIcon {
+    width: 10px;
+    height: 10px;
+
+    display: block;
+
+    filter:  
+        brightness(0)
+        invert(1)
+        drop-shadow(0 0 3px rgba(255, 255, 255, 0.45));
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes rotateRing {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateRingReverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        opacity: 0.55;
+        transform: scale(0.96);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+
+    100% {
+        opacity: 0.55;
+        transform: scale(0.96);
+    }
+}
+
+@keyframes clockGlow {
+    0% {
+        filter: brightness(0.99);
+    }
+
+    50% {
+        filter: brightness(1.02);
+    }
+
+    100% {
+        filter: brightness(0.95);
+    }
+}
+
+@keyframes passwordSweep {
+    0%,
+    68% {
+        transform: translateX(-55%);
+        opacity: 0;
+    }
+
+    74% {
+        opacity: 0.22;
+    }
+
+    88% {
+        transform: translateX(55%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(55%);
+        opacity: 0;
+    }
+}
+
+@keyframes loginMenuReflection {
+    0%,
+    62% {
+        transform: translateX(-65%);
+        opacity: 0;
+    }
+
+    69% {
+        opacity: 0.3;
+    }
+
+    82% {
+        transform: translateX(65%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(65%);
+        opacity: 0;
+    }
+}
+
+@keyframes messageGlow {
+    0% {
+        opacity: 0.65;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.65;
+    }
+}
+
+@keyframes dateGlow {
+    0%,
+    100% {
+        opacity: 0.65;
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.08);
+    }
+}
+
+@keyframes hologramFlicker {
+    0%, 
+    18%,
+    20%,
+    57%,
+    59%,
+    82%,
+    84%,
+    100% {
+        opacity: 0.88;
+        filter: 
+            saturate(0.82)
+            contrast(1.08)
+            brightness(1.06)
+            sepia(0.04)
+            hue-rotate(4deg);   
+    }
+
+    19% {
+        opacity: 0.78;
+        filter: 
+            saturate(0.7)
+            contrast(1.16)
+            brightness(1.18)
+            hue-rotate(8deg);
+    }
+
+    58% {
+        opacity: 0.82;
+
+        filter: 
+            saturate(0.76)
+            contrast(1.12)
+            brightness(1.13)
+            hue-rotate(-4deg);
+    }
+
+    83% {
+        opacity: 0.8;
+
+        filter: 
+            saturate(0.72)
+            contrast(1.14)
+            brightness(1.16)
+            hue-rotate(6deg);
+    }
+}
+
+@keyframes hologramSignalLine {
+    0%,
+    37%,
+    40%,
+    73%,
+    76%,
+    100% {
+        opacity: 0;
+        transform: translateY(-8%);
+    }
+
+    38% {
+        opacity: 0.55;
+        transform: translateY(0);
+    }
+
+    39% {
+        opacity: 0.2;
+        transform: translateY(-3%);
+    }
+
+    75% {
+        opacity: 0;
+        transform: translateY(7%);
+    }
+}
+
+.loginScreen[data-layout="phone"] {
+
+    --menu-offset: 0.6rem;
+    --menu-gap: 0.35rem;
+    --menu-padding: 0.32rem 0.45rem;
+
+    --menu-icon-size: 18px;
+    --power-size: 24px;
+
+    --clock-size: clamp(3rem, 16vw, 4.5rem);
+    --date-size: 0.85rem;
+
+    --content-width: min(90vw, 360px);
+    --content-gap: 1.2rem;
+    --content-offset: -50%;
+
+    --login-gap: 0.75rem;
+
+    --avatar-system: 180px;
+    --avatar-frame: 120px;
+    --avatar-glow: 140px;
+    --avatar-outer: 170px;
+    --avatar-middle: 140px;
+
+    --outer-ring-inner: 59px;
+    --outer-ring-outer: 64px;
+
+    --middle-ring-inner: 46px;
+    --middle-ring-outer: 51px;
+
+    --credential-margin: 0.75rem;
+    --credential-gap: 0.6rem;
+
+    --password-width: clamp(140px, 48vw, 180px);
+    --password-height: 30px;
+
+    --message-size: 0.75rem;
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .loginScreen {
+        --content-offset: -48%;
+        --content-gap: 0.8rem;
+        --content-width: min(90vw, 520px);
+
+        --clock-size: clamp(2.6rem, 11vh, 3.5rem);
+        --date-size: 0.75rem;
+
+        --login-gap: 0.45rem;
+
+        --credential-gap: 0.35rem;
+        --credential-margin: 0.35rem;
+
+        --password-width: 150px;
+        --password-height: 26px;
+
+        --message-size: 0.7rem;
+    }
+
+    .timeSection {
+        gap: 0;
+    }
+
+    .avatarSystem {
+        width: 145px;
+        height: 145px;
+
+        margin-bottom: 0.15rem;
+    }
+
+    .avatarFrame {
+        width: 100px;
+        height: 100px;
+    }
+
+    .avatarInnerGlow {
+        width: 118px;
+        height: 118px;
+
+        filter: blur(12px);
+    }
+
+    .avatarOuterRing {
+        width: 138px;
+        height: 138px;
+
+        mask: 
+            radial-gradient(
+                circle,
+                transparent 48px,
+                black 53px
+        );
+
+        -webkit-mask:  
+            radial-gradient(
+                circle,
+                transparent 48px,
+                black 53px
+            );
+    }
+
+    .avatarMiddleRing {
+        width: 116px;
+        height: 116px;
+
+        mask:
+            radial-gradient(
+                circle,
+                transparent 38px,
+                black 43px
+            );
+
+        -webkit-mask:
+            radial-gradient(
+                circle,
+                transparent 38px,
+                black 43px
+            );
+    }
+
+    .passwordDisplay {
+        font-size: 1.1rem;
+    }
+
+    .arrowButton {
+        width: 15px;
+        height: 15px;
+    }
+
+    .arrowIcon {
+        width: 8px;
+        height: 8px;
+    }
+}

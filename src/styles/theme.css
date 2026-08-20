@@ -1,0 +1,678 @@
+:root {
+    --grain-texture:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.35' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+
+    --system-padding: 1rem;
+
+    --chrome-text: rgba(52, 52, 52, 0.8);
+    --chrome-shadow-dark: rgba(0, 0, 0, 0.85);
+    --chrome-shadow-light: rgba(255, 255, 255, 0.95);
+}
+
+.grainOverlay {
+    position: relative;
+    overflow: hidden;
+}
+
+.grainOverlay::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: var(--grain-texture);
+
+    opacity: 0.24;
+    mix-blend-mode: overlay;
+
+    pointer-events: none;
+}
+
+.chromeText {
+    color: var(--chrome-text);
+
+    letter-spacing: 0.03em;
+    font-weight: 600;
+
+    text-shadow: 
+    0 -1px 0 rgba(255, 255, 255, 0.95),
+    0 -1px 0 rgba(0, 0, 0, 0.75),
+    0 2px 2px rgba(255, 255, 255, 0.18);
+}
+
+.menuText {
+    color: rgba(232, 250, 255, 0.94);
+
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+
+    text-shadow: 
+        0 0 4px rgba(120, 240, 255, 0.12),
+        0 1px 2px rgba(0, 0, 0, 0.55);
+}
+
+.controlButton {
+    position: relative;
+
+    border: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: visible;
+    cursor: pointer;
+
+    color: rgba(0, 0, 0, 0.4);
+
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.22),
+        0 -1px 0 rgba(0, 0, 0, 0.4);
+
+    background: 
+        var(--control-grain, var(--grain-texture)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(0, 0, 0, 0.16)
+        ),
+        var(--control-button-color);
+
+    background-blend-mode: overlay, normal, normal;
+
+    box-shadow: 
+        inset 1px 1px 1px rgba(255, 255, 255, 0.18),
+        inset -1px -1px 1px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(0, 0, 0, 0.24);
+}
+
+.controlButton::before {
+    content: "";
+
+    position: absolute;
+    inset: -4px;
+
+    pointer-events: none;
+
+    box-shadow: 
+        inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+        inset -3px -3px 4px rgba(0, 0, 0, 0.4),
+        2px 2px 3px rgba(255, 255, 255, 0.12);
+}
+
+.controlButton::after {
+    content: "";
+
+    position: absolute;
+    inset: 2px;
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.08),
+            transparent 42%,
+            rgba(255, 255, 255, 0.08)
+        );
+
+    pointer-events: none;
+}
+
+.controlButton:active {
+    filter: brightness(0.92);
+
+    box-shadow: 
+        inset 3px 3px 5px rgba(0, 0, 0, 0.5),
+        inset -2px -2px 2px rgba(255, 255, 255, 0.12),
+        0 0 0 1px rgba(0, 0, 0, 0.28);
+}
+
+.controlButton:active::after {
+    background: 
+        linear-gradient(
+            180deg, 
+            rgba(0, 0, 0, 0.18),
+            transparent 50%,
+            rgba(255, 255, 255, 0.1)
+        );
+}
+
+.controlRed {
+    --control-button-color: #6b2323;
+}
+
+.controlGold {
+    --control-button-color: #ddbd45;
+}
+.controlGreen {
+    --control-button-color: #4fc37f;
+}
+
+.controlChrome {
+    --control-grain: var(--grain-texture);
+
+    --control-button-color:
+        linear-gradient(
+            180deg,
+            #aaa7a1 0%,
+            #92908a 22%,
+            #c7c3bb 50%,
+            #8c8984 78%,
+            #7d7973 100%
+        );
+
+    color: rgba(35, 35, 35, 0.95);
+
+    text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.8),
+        0 1px 0 rgba(0, 0, 0, 0.18);
+}
+
+.osContentSurface {
+    position: relative;
+    overflow: hidden;
+
+    color: rgba(45, 45, 45, 0.95);
+
+    background:
+        var(--grain-texture),
+
+        linear-gradient(
+            180deg,
+            rgba(255, 248, 238, 0.12) 0%,
+            rgba(255, 250, 246, 0.04) 40%,
+            rgba(255, 250, 246, 0.04) 60%,
+            rgba(255, 246, 235, 0.12) 100%
+        ),
+        
+       radial-gradient(
+        circle at 18% 22%,
+        rgba(180, 235, 255, 0.42),
+        transparent 34%
+       ),
+
+       radial-gradient(
+        circle at 74% 26%,
+        rgba(255, 185, 225, 0.38),
+        transparent 38%
+       ),
+
+       radial-gradient(
+        circle at 42% 78%,
+        rgba(255, 205, 232, 0.32),
+        transparent 42%
+       ),
+       
+       radial-gradient(
+        circle at 82% 76%,
+        rgba(205, 195, 255, 0.26),
+        transparent 42%
+       ),
+
+       linear-gradient(
+         135deg,
+         #fdf9f2 0%,
+         #f7f0e6 24%,
+         #fffdf8 46%,
+         #efe7dc 68%,
+         #faf5ed 100%
+       );
+
+    background-blend-mode: 
+        soft-light,
+        overlay,
+        screen,
+        screen,
+        screen,
+        screen,
+        normal; 
+
+    background-size: 
+        70px 70px,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%;
+}
+
+.osContentSurface::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: 
+        linear-gradient(
+            115deg,
+            transparent 18%,
+            rgba(255, 255, 255, 0.18) 34%,
+            rgba(255, 245, 255, 0.22) 46%,
+            rgba(255, 220, 240, 0.16) 56%,
+            rgba(255, 255, 255, 0.14) 66%,
+            transparent 82%
+        );
+    
+    mix-blend-mode: screen;
+    opacity: 0.8;
+
+    pointer-events: none;
+}
+
+.osList {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100%;
+
+    padding: 8px 10px;
+
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.osList::before {
+    display: none;
+}
+
+.osListRow {
+    position: relative;
+
+    width: 100%;
+    min-height: 34px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 12px;
+
+    border: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    color: rgba(255, 255, 255, 0.9);
+    background: transparent;
+
+    font: inherit;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 
+        color 150ms ease,
+        background 150ms ease;
+}
+
+.osListRow::after {
+    content: "";
+
+    position: absolute;
+
+    right: 8px;
+    bottom: 0;
+    left: 8px;
+
+    height: 1px;
+
+    background: 
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(1, 8, 17, 0.18) 16%,
+            rgba(1, 8, 17, 0.28) 50%,
+            rgba(1, 8, 17, 0.18) 84%,
+            transparent 100%
+        );
+
+    box-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.04);
+
+    pointer-events: none;
+}
+
+.osListRow:last-child::after {
+    display: none;
+}
+
+.osListRow:hover {
+    color: rgba(255, 255, 255, 0.98);
+
+    background: 
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025),
+            rgba(142, 246, 255, 0.045),
+            rgba(183, 146, 255, 0.025)
+        );
+}
+
+.osListRow:focus-visible {
+    outline: 1px solid rgba(142, 246, 255, 0.8);
+    outline-offset: -2px;
+
+    background: 
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(142, 246, 255, 0.08),
+            rgba(183, 146, 255, 0.04)
+        );
+}
+
+.osListItem {
+    color: inherit;
+
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.58);
+
+    pointer-events: none;
+}
+
+.osIconGrid {
+    position: relative;
+    z-index: 1;
+
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(82px, 1fr));
+
+    gap: 10px;
+
+    align-content: start;
+}
+
+.osIconItem {
+    min-height: 88px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px;
+
+    border: none;
+    border-radius: 8px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    color: rgba(255, 255, 255, 0.92);
+    background: transparent;
+
+    font: inherit;
+    text-align: center;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition: 
+        background 150ms ease,
+        filter 150ms ease;
+}
+
+.osIconItem img,
+.osIconItem video {
+    width: 40px;
+    height: 40px;
+
+    display: block;
+    object-fit: contain;
+
+    pointer-events: none;
+
+    transition: 
+        filter 150ms ease;
+}
+
+.osIconItem span {
+max-width: 78px;
+
+color: rgba(255, 255, 255, 0.92);
+
+font-size: 12px;
+font-weight: 500;
+line-height: 1.2;
+
+text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.62);
+
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+
+pointer-events: none;
+}
+
+.osIconItem:hover {
+    background: 
+        rgba(255, 255, 255, 0.04);
+}
+
+.osIconItem:hover img,
+.osIconItem:hover video {
+    filter: brightness(1.035);
+}
+
+.osIconItem:focus-visible {
+    outline: 1px solid rgba(142, 246, 255, 0.8);
+    outline-offset: 2px;
+
+    background: rgba(255, 255, 255, 0.055);
+}
+
+.osMenu {
+    position: absolute;
+    z-index: 9999;
+
+    min-width: 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(218, 248, 255, 0.22);
+    border-radius: 14px;
+
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.12),
+            rgba(210, 242, 249, 0.07) 42%,
+            rgba(180, 207, 232, 0.08) 68%,
+            rgba(255, 255, 255, 0.055)
+        ),
+        rgba(12, 30, 46, 0.68);
+
+    background-size: 
+        140px 140px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal,
+        normal;
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -1px 0 rgba(126, 240, 255, 0.055),
+        0 14px 32px rgba(0, 0, 0, 0.34),
+        0 0 16px rgba(73, 230, 255, 0.045);
+
+    backdrop-filter: 
+        blur(24px)
+        saturate(118%);
+
+    -webkit-backdrop-filter: 
+        blur(24px)
+        saturate(118%);
+    
+    isolation: isolate;
+
+    padding-bottom: 0.35rem;
+}
+
+.osMenu::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    background: 
+        radial-gradient(
+            circle at 24% 12%,
+            rgba(255, 255, 255, 0.13),
+            transparent 46%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            transparent 44%
+        );
+     opacity: 0.72;   
+
+    pointer-events: none;
+}
+
+.osMenu::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: 
+        var(--grain-texture);
+
+    opacity: 0.2;
+
+    mask-image: 
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.35)
+        );
+
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.35)
+        );
+
+    mix-blend-mode: soft-light;
+}
+
+.osMenuItem {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+
+    padding: 0.45rem 0.85rem;
+
+    border: none;
+
+    color: rgba(255, 255, 255, 0.94);
+
+    background: transparent;
+
+    
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+    text-align: left;
+    white-space: nowrap;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.68);
+
+    cursor: pointer;
+
+    transition: 
+        color 150ms ease,
+        background 150ms ease; 
+}
+
+.osMenuItem:first-child {
+    padding-top: 0.75rem;
+}
+
+.osMenuItem:hover {
+    color: rgba(255, 255, 255, 1);
+
+    background: 
+        linear-gradient(
+           90deg,
+           transparent 4%,
+           rgba(255, 255, 255, 0.08),
+           rgba(197, 241, 250, 0.12),
+           rgba(255, 255, 255, 0.055)
+        )
+}
+
+.osMenuItem:focus-visible {
+    outline: 1px solid rgba(142, 246, 255, 0.58);
+    outline-offset: -2px;
+
+    background: 
+        rgba(218, 248, 255, 0.1);
+}
+
+.osMenuSeparator {
+    position: relative;
+    z-index: 1;
+
+    height: 1px;
+    margin: 
+        0.15rem 
+        0.65rem
+        0.1rem;
+
+    background: 
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(1, 8, 17, 0.38) 18%,
+            rgba(1, 8, 17, 0.5) 50%,
+            rgba(1, 8, 17, 0.38) 82%,
+            transparent 100%
+        );
+
+        box-shadow: 
+            0 1px 0 rgba(255, 255, 255, 0.1);
+    
+    opacity: 0.9;
+}
+
+.osVideoThumb {
+    width: 48px;
+    height: 48px;
+
+    object-fit: cover;
+
+    border: 1px solid rgba(255, 253, 248, 0.96);
+
+    background: #111;
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 253, 248, 0.96),
+        1px 1px 4px rgba(0, 0, 0, 0.175);
+}

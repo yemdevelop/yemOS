@@ -1,0 +1,896 @@
+.resumeApplication {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    color: rgba(255, 255, 255, 0.94);
+
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(251, 78, 82, 0.055),
+            rgba(214, 175, 73, 0.025) 43%,
+            rgba(58, 242, 53, 0.018) 62%,
+            rgba(181, 13, 4, 0.04) 78%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(42, 12, 16, 0.98),
+            rgba(23, 25, 28, 0.99)
+        );
+}
+
+.resumeApplication::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    background: 
+        var(--grain-texture),
+        repeating-linear-gradient(
+            180deg,
+            transparent 0,
+            transparent 4px,
+            rgba(255, 255, 255, 0.012) 4px,
+            rgba(255, 255, 255, 0.012) 5px
+        );
+
+    background-size: 
+        95px 95px,
+        100% 5px;
+
+    opacity: 0.18;
+
+    pointer-events: none;
+}
+
+.resumeApplication > * {
+    position: relative;
+    z-index: 1;
+}
+
+.toolbar {
+    min-height: 46px;
+    flex: 0 0 46px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 0 12px;
+
+    overflow-x: auto;
+
+    border-bottom: 1px solid rgba(251, 78, 82, 0.2);
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            110deg,
+            transparent 10%,
+            rgba(251, 78, 82, 0.12) 29%,
+            rgba(214, 175, 73, 0.1) 46%,
+            rgba(58, 13, 4, 0.035) 57%,
+            rgba(181, 13, 4, 0.1) 67%,
+            transparent 85%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(91, 17, 22, 0.98),
+            rgba(48, 9, 13, 0.99),
+            rgba(23, 25, 28, 1)
+        );
+
+    background-size: 
+        95px 95px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal,
+        normal;
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.64);
+}
+
+.toolbarButton {
+    min-width: 126px;
+    height: 28px;
+
+    flex: 0 0 auto;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0 11px;
+
+    border: 
+        1px solid rgba(251, 78, 82, 0.26);
+
+    border-radius: 6px;
+
+    color: rgba(255, 255, 255, 0.92);
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(251, 78, 82, 0.13),
+            rgba(181, 13, 4, 0.08)
+        ),
+        linear-gradient(
+            180deg,
+            rgba(56, 31, 34, 0.98),
+            rgba(23, 25, 28, 1)
+        );
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.09),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+        0 3px 8px rgba(0, 0, 0, 0.26);
+
+    font: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.025em;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.82);
+}
+
+.toolbarButton::before,
+.toolbarButton::after {
+    display: none;
+}
+
+.toolbarButton:hover {
+    border-color: rgba(214, 175, 73, 0.42);
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(251, 78, 82, 0.18),
+            rgba(181, 13, 4, 0.12)
+        ),
+        linear-gradient(
+            180deg,
+            rgba(65, 33, 36, 0.98),
+            rgba(23, 25, 28, 1)
+        );
+}
+
+.toolbarButton:active {
+    filter: brightness(0.88);
+}
+
+.toolbarButton:focus-visible {
+    outline: 1px solid rgba(58, 242, 53, 0.42);
+    outline-offset: 2px;
+}
+
+.toolbarDivider {
+    width: 1px;
+    height: 24px;
+
+    margin: 0 3px;
+
+    background: 
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(0, 0, 0, 0.8),
+            transparent
+        );
+
+    box-shadow: 
+        1px 0 0 rgba(201, 210, 214, 0.12);
+}
+
+.resumeNotice {
+    flex: 0 0 auto;
+
+    margin: 0;
+    padding: 7px 13px;
+
+    border-bottom: 
+        1px solid rgba(255, 178, 52, 0.14);
+
+    color: rgba(242, 232, 220, 0.72);
+
+    background: 
+        linear-gradient(
+            90deg,
+            rgba(255, 72, 56, 0.045),
+            rgba(255, 178, 52, 0.035),
+            transparent
+        ),
+        rgba(12, 12, 14, 0.88);
+
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.72);
+}
+
+.workspace {
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+}
+
+.pageSidebar {
+    width: 150px;
+    flex: 0 0 150px;
+
+    overflow-y: auto;
+
+    padding: 13px 10px;
+
+    border-right: 
+        1px solid rgba(251, 78, 82, 0.17);
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            145deg,
+            rgba(181, 13, 4, 0.09),
+            transparent 42%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(58, 12, 17, 0.98),
+            rgba(23, 25 , 28, 0.99)
+        );
+
+    background-size: 
+        95px 95px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal,
+        normal;
+
+    box-shadow: 
+        inset -1px 0 0 rgba(255, 255, 255, 0.035);
+}
+
+.sidebarHeading {
+    margin: 0 6px 11px;
+
+    color: rgba(214, 175, 73, 0.82);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.82);
+}
+
+.pageThumbnail {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 11px;
+    padding: 8px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: rgba(255, 255, 255, 0.74);
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: 
+        color 150ms ease,
+        background 150ms ease;
+}
+
+.pageThumbnail:hover {
+    color: rgba(255, 255, 255, 0.96);
+
+    background: 
+        linear-gradient(
+            90deg,
+            rgba(251, 78, 82, 0.035),
+            rgba(181, 13, 4, 0.085),
+            rgba(214, 175, 73, 0.035)
+        );
+}
+
+.activeThumbnail {
+    color: white;
+
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(251, 78, 82, 0.12),
+            rgba(181, 13, 4, 0.13),
+            rgba(214, 175, 73, 0.055)
+        );
+
+    box-shadow: 
+        inset 0px 1px 0 rgba(255, 255, 255, 0.07),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.activeThumbnail .thumbnailPaper {
+    border-color: 
+        rgba(251, 78, 82, 0.44);
+
+    box-shadow: 
+        0 0 8px rgba(181, 13, 4, 0.18),
+        0 3px 7px rgba(0, 0, 0, 0.5);
+}
+
+.thumbnailLabel {
+    max-width: 120px;
+
+    color: inherit;
+
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: center;
+
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.72);
+}
+
+.thumbnailPaper {
+    position: relative;
+
+    width: 62px;
+    height: 78px;
+
+    overflow: hidden;
+
+    border: 
+        1px solid rgba(251, 78, 82, 0.22);
+
+    background: #fffdf8;
+
+    box-shadow: 
+        0 3px 7px rgba(0, 0, 0, 0.48),
+        0 0 0 1px rgba(214, 1755, 73, 0.08);
+    
+    pointer-events: none;
+}
+
+.thumbnailScaler {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 720px;
+    height: 900px;
+
+    transform: scale(0.085);
+    transform-origin: top left;
+
+    pointer-events: none;
+}
+
+.thumbnailDocumentPage {
+    width: 720px;
+    margin: 0;
+    padding: 46px;
+    box-shadow: none;
+}
+
+.activeThumbnail .thumbnailPaper {
+    border-color: rgba(255, 82, 62, 0.4);
+
+    color: rgba(255, 255, 255, 0.9);
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 9px rgba(255, 72, 56, 0.11),
+        2px 3px 7px rgba(0, 0, 0, 0.42);
+}
+
+.documentArea {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(255, 72, 56, 0.04),
+            transparent 38%,
+            rgba(201, 210, 214, 0.035) 68%,
+            rgba(255, 178, 52, 0.025)
+        ),
+        linear-gradient(
+            180deg,
+            rgba(20, 16, 18, 0.98),
+            rgba(5, 7, 9, 0.99)
+        );
+}
+
+.documentViewport {
+    width: 100%;
+    height: 100%;
+
+    overflow: auto;
+
+    padding: 28px;
+}
+
+.documentPage {
+    width: min(720px, 100%);
+    min-height: 900px;
+
+    margin: 0 auto;
+    padding: 46px;
+
+    color: rgba(30, 27, 28, 0.94);
+
+    background:  
+        var(--grain-texture),
+        linear-gradient(
+            180deg,
+            #fffdf8,
+            #f4ede2
+        );
+
+    background-size: 
+        150px 150px,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal;
+
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.52),
+        0 0 0 1px rgba(201, 210, 214, 0.12);
+}
+
+.overviewPage {
+    min-height: 400px;
+}
+
+.documentHeader {
+    padding-bottom: 18px;
+
+    border-bottom: 
+        2px solid rgba(133, 32, 28, 0.78);
+}
+
+.documentHeader h1 {
+    margin: 0;
+
+    color: rgba(85, 20, 22, 0.96);
+
+    font-size: 26px;
+}
+
+.documentSection h2,
+.pageHeader h2 {
+    color: rgba(101, 24, 25, 0.92);
+}
+
+.documentHeader p {
+    margin: 0;
+
+    font-size: 15px;
+}
+
+.documentSection {
+    margin-top: 26px;
+}
+
+.documentSection h2 {
+    margin: 0 0 10px;
+
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.documentSection p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.statusBar {
+    height: 30px;
+    flex: 0 0 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px;
+
+    border-top: 
+        1px solid rgba(251, 78, 82, 0.26);
+
+    color: rgba(255, 255, 255, 0.9);
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            110deg,
+            transparent 10%,
+            rgba(251, 78, 82, 0.16) 28%,
+            rgba(214, 175, 73, 0.13) 45%,
+            rgba(58, 242, 53, 0.055) 57%,
+            rgba(181, 13, 4, 0.16) 68%,
+            transparent 86%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(105, 20, 24, 0.98),
+            rgba(54, 8, 12, 0.99) 52%,
+            rgba(23, 25, 28, 1)
+        );
+
+    background-size: 
+        95px 95px,
+        100% 100%,
+        100% 100%;
+
+    background-blend-mode: 
+        soft-light,
+        normal,
+        normal;
+    
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.68);
+
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.035em;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.82);
+}
+
+.documentJobTitle {
+    margin: 6px 0 0;
+
+    color: rgba(45, 45, 45, 0.72);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.documentContact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 10px;
+}
+
+.documentContact a {
+    color: rgba(112, 28, 27, 0.88);
+
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.documentContact a:hover {
+    color: rgba(179, 48, 36, 1);
+    text-decoration: underline;
+}
+
+.documentSkillList,
+.documentTechnologyList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.documentSkill,
+.documentTechnology {
+    padding: 4px 7px;
+
+    border: 
+        1px solid rgba(112, 28, 27, 0.11);
+
+    border-radius: 6px;
+
+    color: rgba(68, 25, 24, 0.9);
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(255, 250, 244, 0.94),
+            rgba(233, 218, 205, 0.92)
+        );
+
+    box-shadow: 
+        inset 1px 1px 0 rgba(255, 255, 255, 0.72);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.pageHeader {
+    margin-bottom: 18px;
+    padding-bottom: 7px;
+
+    border-bottom: 1px solid rgba(35, 35, 35, 0.5);
+}
+
+.pageHeader:not(:first-child) {
+    margin-top: 30px;
+}
+
+.pageHeader h2 {
+    margin: 0;
+
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.documentEntryList {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.documentEntry {
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid rgba(40, 40, 40, 0.14);
+}
+
+.documentEntry:last-child {
+    border-bottom: none;
+}
+
+.documentEntryHeader,
+.projectHeading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.documentEntry h3,
+.projectHeading h3 {
+    margin: 0;
+
+    font-size: 14px;
+}
+
+.documentOrganization {
+    margin: 4px 0 0;
+
+    color: rgba(45, 45, 45, 0.7);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.documentDates {
+    flex-shrink: 0;
+
+    color: rgba(45, 45, 45, 0.65);
+    font-size: 11px;
+    text-align: right;
+}
+
+.documentDetailList {
+    margin: 12px 0 0;
+    padding-left: 18px;
+
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.documentDetailList li + li {
+    margin-top: 5px;
+}
+
+.projectStatus {
+    flex-shrink: 0;
+
+    padding: 4px 7px;
+
+    background: 
+        var(--grain-texture),
+        linear-gradient(
+            180deg,
+            #c4c1bb,
+            #99968f
+        );
+
+    background-blend-mode: 
+        soft-light,
+        normal;
+
+    box-shadow: 
+        inset 1px 1px 0 rgba(255, 255, 255, 0.42),
+        inset -1px -1px 0 rgba(0, 0, 0, 0.18);
+
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.projectDescription {
+    margin: 10px 0;
+
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.documentTechnology {
+    font-size: 9px;
+}
+
+.mobilePageSelector {
+    display: none;
+}
+
+.projectSubsection {
+    margin-top: 18px;
+}
+
+.projectSubsection h4 {
+    margin: 0 0 8px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+    .pageSidebar {
+        display: none;
+    }
+
+    .workspace {
+        display: block;
+    }
+
+    .documentArea {
+        width: 100%;
+        height: 100%;
+    }
+
+    .documentViewport {
+        padding: 10px;
+    }
+
+    .documentPage {
+        width: 100%;
+        min-height: 0;
+
+        padding: 20px;
+    }
+
+    .toolbar {
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        gap: 7px;
+
+        padding: 0 8px;
+    }
+
+    .toolbarButton {
+        min-width: max-content;
+
+        flex: 0 0 auto;
+    }
+
+    .resumeNotice {
+        padding: 6px 9px;
+
+        font-size: 10px;
+    }
+
+    .statusBar {
+        padding: 0 9px;
+
+        font-size: 10px;
+    }
+
+    .mobilePageSelector {
+        display: flex;
+        align-items: center;
+
+        gap: 6px;
+
+        padding: 7px 8px;
+
+        overflow-x: auto;
+
+        border-bottom: 1px solid rgba(251, 78, 82, 0.18);
+
+        background: 
+            var(--grain-texture),
+            linear-gradient(
+                180deg,
+                rgba(74, 15, 20, 0.96),
+                rgba(29, 12, 15, 0.98)
+            );
+
+        background-blend-mode:
+            soft-light,
+            normal;
+    }
+
+    .mobilePageButton {
+        flex: 0 0 auto;
+
+        padding: 5px 8px;
+
+        border: 1px solid rgba(181, 13, 4, 0.35);
+
+        border-radius: 6px;
+
+        color: rgba(255, 255, 255, 0.86);
+
+        background: 
+            linear-gradient(
+                180deg,
+                rgba(92, 21, 25, 0.84),
+                rgba(37, 18, 20, 0.96)
+            );
+
+        font-size: 10px;
+        font-weight: 600;
+
+        cursor: pointer;
+    }
+
+    .mobilePageButton {
+        color: white;
+
+        border-color: rgba(251, 78, 82, 0.5);
+
+        box-shadow: 
+            inset 0 1px 0 rgba(255, 255, 255, 0.08),
+            0 0 5px rgba(181, 13, 4, 0.14);
+
+        background: 
+            linear-gradient(
+                180deg,
+                rgba(181, 13, 4, 0.72),
+                rgba(72, 15, 19, 0.96)
+            );
+    }
+}

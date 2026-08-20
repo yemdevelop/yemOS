@@ -1,0 +1,769 @@
+.desktop {
+    --menu-bar-height: 2.5rem;
+
+    --dock-height: 72px;
+    --dock-bottom: 1rem;
+    --dock-item-size: 52px;
+    --dock-gap: 0rem;
+
+    --desktop-inline-padding: 1.25rem;
+    --desktop-block-padding: 1.25rem;
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    isolation: isolate;
+} 
+
+.desktop[data-layout="tablet"] {
+    --dock-height: 68px;
+    --dock-bottom: 0.8rem;
+    --dock-item-size: 48px;
+
+    --desktop-inline-padding: 1rem;
+    --desktop-block-padding: 1rem;
+
+    
+}
+
+.desktop[data-layout="phone"] {
+    --menu-bar-height: 2.35rem;
+
+    --dock-height: 64px;
+    --dock-bottom: 0.6rem;
+    --dock-item-size: 44px;
+    --dock-gap: 0.6rem;
+
+    --desktop-inline-padding: 0.75rem;
+    --desktop-block-padding: 0.75rem; 
+}
+
+.desktopCanvas {
+    position: absolute;
+    top: var(--menu-bar-height);
+    left: 0;
+    width: 100%;
+    height: calc(100dvh - var(--menu-bar-height));
+    background: transparent;
+}
+
+.desktopIcons {
+    position: absolute;
+    top: calc(var(--desktop-block-padding) + 1.5rem);
+    right: var(--desktop-inline-padding);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    z-index: 0;
+
+    transition:
+        opacity 500ms ease,
+        transform 500ms ease;
+}
+
+.desktopIconsHidden {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.desktopIconsVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.desktopIcon {
+    position: relative;
+    z-index: 1;
+
+    width: 84px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.desktopIconImage {
+    width: 45px;
+    height: 45px;
+
+    display: block;
+    object-fit: contain;
+
+    filter: 
+        drop-shadow(
+            0 3px 5px
+            rgba(0, 0, 0, 0.34)
+        );
+}
+
+.desktopIconLabel {
+    max-width: 84px;
+
+    margin-top: 2px;
+
+    color: rgba(236, 250, 255, 0.92);
+
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.025em;
+    text-align: center;
+
+    text-shadow: 
+        0 0 4px rgba(120, 240, 255, 0.1),
+        0 2px 5px rgba(0, 0, 0, 0.72);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    user-select: none;
+}
+
+.menuBar {
+    position: fixed;
+    z-index: 9999;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: var(--menu-bar-height);
+
+    border-bottom:
+        1px solid rgba(126, 240, 255, 0.2);
+
+    background: 
+    linear-gradient(
+        110deg,
+        transparent 12%, 
+        rgba(255, 255, 255, 0.08) 30%,
+        rgba(142, 246, 255, 0.11) 43%,
+        rgba(183, 146, 255, 0.08) 55%,
+        transparent 76%
+    ),
+    linear-gradient(
+        180deg,
+        rgba(11, 29, 45, 0.6),
+        rgba(3, 10, 20, 0.78)
+    );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.11),
+        inset 0 -1px 0 rgba(73, 230, 255, 0.08),
+        0 5px 18px rgba(0, 0, 0, 0.24),
+        0 0 16px rgba(73, 230, 255, 0.06);
+
+    backdrop-filter:
+        blur(14px)
+        saturate(125%);
+
+    -webkit-backdrop-filter: 
+        blur(14px)
+        saturate(125%);
+}
+
+.menuBar::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: 
+        linear-gradient(
+            105deg,
+            transparent 18%,
+            rgba(255, 255, 255, 0.07) 36%,
+            rgba(142, 246, 255, 0.1) 46%,
+            rgba(183, 146, 255, 0.07) 55%,
+            transparent 73%
+        );
+
+    transform: translateX(-45%);
+
+    animation: 
+        menuReflection 12s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+.menuIconSlot {
+    width: 24px;
+    height: 24px;
+
+    flex: 0 0 24px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menuIcon {
+    width: 18px;
+    height: 18px;
+
+    display: block;
+    object-fit: contain;
+
+    opacity: 0.94;
+
+    pointer-events: none;
+
+    filter: 
+        brightness(1.02)
+        contrast(1.02)
+        drop-shadow(
+            0 0 1px
+            rgba(255, 255, 255, 0.35)
+            )
+            drop-shadow(
+                0 0 6px
+                rgba(73, 230, 255, 0.08)
+            );
+
+        transition: 
+            opacity 180ms ease,
+            filter 180ms ease,
+            transform 180ms ease;
+}
+
+.menuIconButton {
+    width: 24px;
+    height: 24px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.menuIconButton:hover .menuIcon {
+    opacity: 1;
+    
+    transform: scale(1.03);
+
+    filter: 
+        brightness(1.2)
+        contrast(1.04)
+        drop-shadow(
+            0 0 2px
+            rgba(255, 255, 255, 0.86)
+        )
+        drop-shadow(
+            0 0 6px
+            rgba(73, 230, 255, 0.22)
+        );
+}
+
+.menuIconButton:active {
+    transform: scale(0.94);
+}
+
+.menuLabel {
+    color: rgba(236, 252, 255, 0.94);
+
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+
+    text-shadow: 
+        0 0 3px rgba(120, 240, 255, 0.08),
+        0 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+.chromeLogo {
+    width: 23px;
+    height: 23px;
+
+    display: block;
+    object-fit: contain;
+
+    filter: 
+        brightness(1.02)
+        contrast(1.02)
+        drop-shadow(
+            0 0 1px
+            rgba(255, 255, 255, 0.30)
+        )
+        drop-shadow(
+            0 0 3px
+            rgba(73, 230, 255, 0.08)
+        );
+
+    pointer-events: none;
+
+    transition: filter 180ms ease;
+
+}
+
+.logoButton {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background: transparent;
+    
+    cursor: pointer;
+}
+
+.logoButton:hover .chromeLogo {
+   filter: 
+    brightness(1.10)
+    contrast(1.02)
+    drop-shadow(0 0 2px rgba(255, 255, 255, 0.45))
+    drop-shadow(0 0 4px rgba(73, 230, 255, 0.12));
+}
+
+.logoButton:active {
+    transform: scale(0.94);
+}
+
+.menuLeft {
+    padding-left: var(--system-padding);
+}
+
+.menuRight {
+    padding-right: var(--system-padding);
+}
+
+.menuLeft,
+.menuRight {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.dock {
+    --dock-section-gap: 0.35rem;
+    --dock-divider-space: 0.1rem;
+
+    position: absolute;
+    left: 50%;
+    bottom: var(--dock-bottom);
+    z-index: 10;
+
+    min-height: var(--dock-height);
+
+    display: flex;
+    align-items: center;
+
+    gap: var(--dock-gap);
+
+    padding: 0.42rem 0.55rem;
+
+    border: 
+        1px solid rgba(126, 240, 255, 0.2);
+
+    border-radius: 18px;
+
+    background: 
+        linear-gradient(
+            112deg,
+            transparent 10%,
+            rgba(255, 255, 255, 0.08) 28%,
+            rgba(142, 246, 255, 0.12) 42%,
+            rgba(183, 146, 255, 0.08) 56%,
+            transparent 78%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(13, 34, 52, 0.62),
+            rgba(3, 11, 22, 0.82)
+        );
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(73, 230, 255, 0.08),
+        0 12px 30px rgba(0, 0, 0, 0.34),
+        0 0 20px rgba(73, 230, 255, 0.08),
+        0 0 34px rgba(183, 146, 255, 0.04);
+
+    backdrop-filter: 
+        blur(16px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(16px)
+        saturate(130%);
+
+    transform: translateX(-50%);
+
+    overflow: visible;
+}
+
+.dock::before {
+    content: "";
+
+    position: absolute;
+    inset: 2px;
+    border-radius: 15px;
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.07),
+            transparent 34%,
+            transparent 72%, 
+            rgba(73, 230, 255, 0.04)
+        );
+
+    pointer-events: none;
+}
+
+.dockItem {
+    position: relative;
+
+    width: var(--dock-item-size);
+    height: var(--dock-item-size);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.dockIcon {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: contain;
+
+    filter: 
+        brightness(1.02)
+        contrast(1.02)
+        drop-shadow(
+            0 2px 3px
+            rgba(0, 0, 0, 0.3)
+        );
+
+        transition: 
+            filter 180ms ease;
+}
+
+.miniWindowChrome {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    background: 
+        linear-gradient(
+            180deg,
+            #f5f5f5,
+            #d9d9d9,
+            #a6a6a6
+        );
+    box-shadow: 
+        2px 2px 0 rgba(0, 0, 0, 0.35),
+        4px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.miniWindowTitleBar {
+    height: 38px;
+
+    background: 
+        linear-gradient(
+            90deg,
+            #6f6f6f,
+            #a8a8a8,
+            #efefef,
+            #9f9f9f,
+            #d9d9d9,
+            #9f9f9f,
+            #a8a8a8,
+            #6f6f6f
+        );
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.miniWindowBody {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 64px;
+    text-transform: uppercase;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fafafa,
+            #eaeaea
+        );
+}
+
+.dockSection {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+
+    gap: var(--dock-section-gap);
+}
+
+.dockDivider {
+    position: relative;
+    z-index: 1;
+
+    width: 1px;
+    height: 36px;
+
+    margin-inline: var(--dock-divider-space);
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(142, 246, 255, 0.28),
+            rgba(255, 255, 255, 0.36),
+            rgba(183, 146, 255, 0.18),
+            transparent
+        );
+
+    box-shadow: 
+    0 0 6px rgba(73, 230, 255, 0.13);
+    
+    opacity: 0.85;
+}
+
+.tooltip {
+    position: absolute;
+
+    left: 50%;
+    bottom: calc(100% + 20px);
+
+    z-index: 10;
+
+    padding: 0.35rem 0.7rem;
+
+    border: 1px solid rgba(126, 240, 255, 0.16);
+    border-radius: 10px;
+
+    color: rgba(232, 250, 255, 0.95);
+
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(14, 36, 55, 0.68),
+            rgba(3, 11, 22, 0.78)
+        );
+
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 6px 16px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(73, 230, 255, 0.05);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.65);
+
+    opacity: 0;
+
+    transform: 
+        translateX(-50%)
+        translateY(4px);
+
+    transition: 
+        opacity 150ms ease,
+        transform 150ms ease;
+
+    pointer-events: none;
+}
+
+.tooltip::after {
+    content: "";
+
+    position: absolute;
+
+    top: 100%;
+    left: 50%;
+
+    width: 12px;
+    height: 7px;
+
+    background: rgba(6, 18, 31, 0.72);
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+.dockItem:hover .tooltip {
+    opacity: 1;
+
+    transform: 
+        translateX(-50%)
+        translateY(0);
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.fadeIn {
+    opacity: 1;
+    transition: opacity 450ms ease;
+}
+
+.layoutIndicator {
+    position: absolute;
+    top: calc(var(--menu-bar-height) + 0.5rem);
+    right: 0.75rem;
+    z-index: 9999;
+
+    padding: 0.2rem 0.45rem;
+
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: white;
+
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    pointer-events: none;
+}
+
+.openAppIndicator {
+    position: absolute;
+
+    left: 50%;
+    bottom: -3px;
+
+    width: 7px;
+    height: 7px;
+
+    object-fit: contain;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+.mobileDockContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    width: 100%;
+    min-width: 0;
+}
+
+.mobileDockContent .dockSection {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.dockNavigationButton {
+    position: relative;
+    z-index: 1;
+
+    flex: 0 0 28px;
+
+    width: 28px;
+    height: var(--dock-item-size);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: rgba(236, 250, 255, 0.92);
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+@keyframes menuReflection {
+    0%,
+    25%{
+        transform: translateX(-45%);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translateX(35%);
+        opacity: 0.72;
+    }
+
+    75%,
+    100% {
+        transform: translateX(55%);
+        opacity: 0.28;
+    }
+}
