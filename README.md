@@ -6,115 +6,116 @@ yemOS is an interactive portfolio built as a fictional desktop operating system.
 
 Built with React and Vite, the project combines front-end development, UI architecture, responsive design, accessibility, and a custom visual system built primarily with CSS.
 
-![yemOS desktop interface] (docs/images/yemos-desktop.png)
+![yemOS desktop interface](docs/images/yemos-desktop.png)
 
-Features
-∙ Interactive boot, login, desktop, sleep, and shutdown experiences
-∙ Draggable and resizable application windows
-∙ Window focus, minimize, restore, and close behavior
-∙ Desktop dock and application launcher
-∙ Directory-style file browser
-∙ Trash and file-management interactions
-∙ Search interface
-∙ Project application with media previews
-∙ Multi-page Resume application with downloadable and printable resume
-∙ Contact application with professional links
-∙ Responsive desktop, tablet, and phone layouts
-∙ Keyboard-accessible menus, dialogs, windows, and controls
-∙ Reduced-motion support
-∙ Custom sound and media interactions
+## Features
 
-![yemOS Project Viewer] (docs/images/yemos-projects.png)
+- Interactive boot, login, desktop, sleep, and shutdown experiences
+- Draggable and resizable application windows
+- Window focus, minimize, restore, and close behavior
+- Desktop dock and application launcher
+- Directory-style file browser
+- Trash and file-management interactions
+- Search interface
+- Project application with media previews
+- Multi-page Resume application with downloadable and printable resume
+- Contact application with professional links
+- Responsive desktop, tablet, and phone layouts
+- Keyboard-accessible menus, dialogs, windows, and controls
+- Reduced-motion support
+- Custom sound and media interactions
 
-Architecture
+![yemOS Project Viewer](docs/images/yemos-projects.png)
+
+## Architecture
 
 As yemOS grew, shared behavior was moved into reusable systems rather than being managed independently by individual components.
 
 Major systems include:
 
-    ∙ Window Manager - manages application windows, focus, positioning, resizing, minimizing restoring, and closing.
-    ∙ Menu Manager - coordinates system and contextual menus.
-    ∙ Dialog Manager - provides shared system dialog behavior.
-    ∙ Sound Manager - centralizes interface sound behavior.
-    ∙ File System - provides a shared source of truth for files, applications, and Trash state.
-    ∙ Layout Context - coordinates responsive layout behavior across the interface.
-    ∙ App Registry - centralizes application configuration and metadata.
+- **Window Manager** - manages application windows, focus, positioning, resizing, minimizing restoring, and closing.
+- **Menu Manager** - coordinates system and contextual menus.
+- **Dialog Manager** - provides shared system dialog behavior.
+- **Sound Manager** - centralizes interface sound behavior.
+- **File System** - provides a shared source of truth for files, applications, and Trash state.
+- **Layout Context** - coordinates responsive layout behavior across the interface.
+- **App Registry** - centralizes application configuration and metadata.
 
 React Context and custom hooks are used to expose shared state and behavior while keeping components focused on their individual responsibilities.
 
-Accessibility
+## Accessibility
 
 Accessibility was included as part of the application's interaction design.
 
 The project includes:
 
-    ∙ Keyboard navigation for interactive controls
-    ∙ Visible :focus-visible states
-    ∙ Accessible labels for icon-based controls
-    ∙ Dialog and alert-dialog semantics
-    ∙ Focus trapping and focus restoration for modal dialogs
-    ∙ Keyboard-accessible menus
-    ∙ Keyboard activation of minimized windows
-    ∙ Keyboard-accessible sleep/wake behavior
-    ∙ Appropriate treatment of decorative imagery
-    ∙ prefers-reduced-motion support
-    ∙ Keyboard-accessible scrolling where necessary
+- Keyboard navigation for interactive controls
+- Visible `:focus-visible` states
+- Accessible labels for icon-based controls
+- Dialog and alert-dialog semantics
+- Focus trapping and focus restoration for modal dialogs
+- Keyboard-accessible menus
+- Keyboard activation of minimized windows
+- Keyboard-accessible sleep/wake behavior
+- Appropriate treatment of decorative imagery
+- prefers-reduced-motion support
+- Keyboard-accessible scrolling where necessary
 
-Responsive Design
+## Responsive Design
 
 Although yemOS is inspired by desktop operating systems, it is designed to work across multiple screen sizes.
 
 Layouts and interactions adapt for:
 
-    ∙ Desktop
-    ∙ Tablet
-    ∙ Phone
+- Desktop
+- Tablet
+- Phone
 
 Some interface behavior changes intentionally at smaller breakpoints rather than simply shrinking the desktop UI.
 
-![yemOS mobile interface] (docs/images/yemos-mobile.png)
+![yemOS mobile interface](docs/images/yemos-mobile.png)
 
-Tech Stack
+## Tech Stack
 
-    ∙ React
-    ∙ JavaScript
-    ∙ Vite
-    ∙ CSS Modules
-    ∙ CSS
-    ∙ React Context
-    ∙ Custom React Hooks
-    ∙ ESLint
-    ∙ Git/GitHub
+- React
+- JavaScript
+- Vite
+- CSS Modules
+- CSS
+- React Context
+- Custom React Hooks
+- ESLint
+- Git/GitHub
 
-Applications
+## Applications
 
-    Directory:
+### Directory:
 
-    The primary file-browser interface for navigation content within yemOS.
+The primary file-browser interface for navigation content within yemOS.
 
-    ![yemOS directory Application] (docs/images/yemos-directory.png)
+![yemOS directory Application](docs/images/yemos-directory.png)
 
-    Project Viewer:
+### Project Viewer:
 
-    Displays portfolio projects and project information, including optimized media previews.
+Displays portfolio projects and project information, including optimized media previews.
 
-    Resume:
+### Resume:
 
-    Presents resume information through a multi-page document interface and provides access to a downloadable and printable one-page PDF.
+Presents resume information through a multi-page document interface and provides access to a downloadable and printable one-page PDF.
 
-    Contact:
+### Contact:
 
-    Provides professional contact and social links through an interface designed to fit the yemOS environment.
+Provides professional contact and social links through an interface designed to fit the yemOS environment.
 
-    Search:
+### Search:
 
-    Provides keyboard-accessible searching within the yemOS interface.
+Provides keyboard-accessible searching within the yemOS interface.
 
-    Trash:
+### Trash:
 
-    Integrates with the shared file-system state and supports Trash-specific interactions and dialogs
+Integrates with the shared file-system state and supports Trash-specific interactions and dialogs
 
-Design
+## Design
 
 yemOS uses a custom visual system built primarily with CSS, allowing the interface's themes, textures, surfaces, and interactive states to be rendered directly in the browser rather than relying heavily on pre-rendered graphics.
 
@@ -122,23 +123,31 @@ Different parts of the operating system have their own visual themes while remai
 
 Image and media assets are still used where they make sense, such as application icons, artwork, and project previews.
 
-Development
+## Development:
 
-    Install dependencies:
+Install dependencies:
 
-        npm install
+```bash
+npm install
+```
 
-    Start the development server:
+Start the development server:
 
-        npm run dev
+```bash
+npm run dev
+```
 
-    Run ESLint:
+Run ESLint:
 
-        npm run lint
+```bash
+npm run lint
+```
 
-    Create a production build:
+Create a production build:
 
-        npm run build
+```bash
+npm run build
+```
 
 ## Production
 
@@ -146,8 +155,8 @@ The project is built for production with Vite and deployed with Vercel.
 
 **Live Demo:** https://yem-os.vercel.app/
 
-Author
+## Author
 
-Yemelia Hernandezirizarry
+**Yemelia Hernandezirizarry**
 
 Full-Stack Software Developer
