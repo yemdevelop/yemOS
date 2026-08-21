@@ -227,9 +227,13 @@
 .projectContent {
     min-height: 0;
 
-    overflow: visible;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     padding: 12px 10px 16px;
+
+    overscroll-behavior: contain;
+
 }
 
 .projectHeading {

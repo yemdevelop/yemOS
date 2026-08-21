@@ -12,7 +12,7 @@ export const projectData = [
         previewVideo: yemosPreview,
 
         demoUrl: "",
-        repositoryUrl: "https://github.com/yemdevelop",
+        repositoryUrl: "https://github.com/yemdevelop/yemOS",
 
         technologies: [
             "React",
