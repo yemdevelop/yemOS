@@ -74,7 +74,7 @@ export const projectData = [
 
         image: null,
         demoUrl: "",
-        repositoryUrl: "",
+        repositoryUrl: "https://github.com/yemdevelop/queer-art-marketplace",
 
         technologies: [
             "React",
