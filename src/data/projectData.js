@@ -28,21 +28,21 @@ export const projectData = [
             "An interactive operating-system-inspired portfolio built in React to present my resume, projects, technical background, and contact information through a desktop-style application environment.",
         
         inspiration:
-            "yemOS was inspired by desktop operating systems, especially macOS interface patterns, and by the visual identity of ReBoot. I wanted the portfolio to feel like its own operating system rather than a traditional website, with individual applications that hav distinct personalities while still belonging to the same overall design system.",
+            "yemOS was inspired by desktop operating systems, especially macOS interface patterns, and by the visual identity of ReBoot. I wanted the portfolio to feel like its own operating system rather than a traditional website, with individual applications that have distinct personalities while still belonging to the same overall design system.",
 
         challenges: [
             "Defining clear separation of responsibilities as the project grew, especially deciding which behavior belonged inside individual applications and which belonged in shared systems such as the window manager, window renderer, menu manager, and file system.",
             "Designing the rendering architecture for multiple application types while keeping shared window behavior reusable instead of duplicating window logic across components.",
             "Managing React state and re-rendering across interconnected systems. Changes to window state, active applications, menus, responsive layouts, and application-specific state had to update the correct parts of the interface without unintentionally affecting others.",
-            "Supporting desktop, phone portrait, and phone landscape layouts while perserving expected window behavior across viewport changes. Rotation introduced additional challenges around maximizing, restoring, minimizing, and recalculating window dimensions.",
-            "Adapting a desktop-style interface to smaller screens without simply shrinking the desktop layout, while perserving the visual identity and interaction model of yemOS.",
+            "Supporting desktop, phone portrait, and phone landscape layouts while preserving expected window behavior across viewport changes. Rotation introduced additional challenges around maximizing, restoring, minimizing, and recalculating window dimensions.",
+            "Adapting a desktop-style interface to smaller screens without simply shrinking the desktop layout, while preserving the visual identity and interaction model of yemOS.",
             "Maintaining consistent shared behavior and styling while allowing applications such as Directory, Search, Contact, Resume, Projects, and the media player to have their own visual identities.",
         ],
         
         completedFeatures: [
             "Boot and login experience",
             "Reusable window-management system",
-            "Window opening, closing, focusing, dragging, minimizing, maximizing,  and restoring",
+            "Window opening, closing, focusing, dragging, minimizing, maximizing, and restoring",
             "Responsive window behavior for desktop, phone portrait, and phone landscape",
             "Directory and Trash applications",
             "Shared file-system architecture",
@@ -68,9 +68,9 @@ export const projectData = [
     {
         id: "ecommerce",
 
-        title: "Full-Stack E-Commerce Platform",
-        status: "Planned",
-        progress: 0,
+        title: "Queer Art Marketplace",
+        status: "In Progress",
+        progress: 30,
 
         image: null,
         demoUrl: "",
@@ -78,23 +78,36 @@ export const projectData = [
 
         technologies: [
             "React",
+            "Vite",
             "Node.js",
             "Express",
             "MongoDB",
+            "Mongoose",
+            "JWT",
+            "bcrypt",
         ],
 
         description:
-            "A planned full-stack shopping platform with product discovery, account management, cart functionality, checkout, and administrative tools. ",
+            "A full-stack e-commerce marketplace for browsing and buying queer art, supporting queer artists, and promoting local queer events.",
 
-        completedFeatures: [],
+        completedFeatures: [
+            "Express and Vite project scaffolding",
+            "User signup with bcrypt password hashing",
+            "Login with JWT issuance and auth middleware",
+            "Artwork listings for digital and physical pieces",
+            "Artist-only listing creation and ownership checks",
+            "Editing and deleting listings, locked once a piece has sales",
+            "Order creation with shipping for physical artwork",
+            "Protection against double-selling one-of-a-kind pieces",
+        ],
 
         plannedFeatures: [
-            "User registration and authentication",
-            "Product catalog and search",
-            "Shopping-cart management",
-            "Checkout workflow",
-            "Order history",
-            "Administrative dashboard",
+            "React storefront and artwork browsing",
+            "Artist profiles and dashboards",
+            "Shopping cart and checkout with payments",
+            "Secure digital artwork downloads",
+            "Order history for buyers and artists",
+            "Local queer events listings",
         ],
     },
 
